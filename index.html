@@ -364,7 +364,15 @@
       <p class="disclosure-inline">* Esta é uma vitrine de divulgação. Os botões de compra abrem lojas externas. Alguns links podem ser de afiliados e gerar comissão ao canal, sem custo adicional para você. Preços e disponibilidade são definidos pelas lojas.</p>
     </section>
 
-    <section class="video-section" id="videos"><div class="shell video-layout"><div class="video-left"><span class="section-kicker"><span></span> UNBOXING / NA PRÁTICA</span><h2>Antes de comprar,<br><em>dê o play.</em></h2><p>Quer ver o produto fora da caixa, seus detalhes e como ele funciona? Quando houver um vídeo cadastrado, você poderá assistir aqui ou diretamente no meu canal.</p><div class="video-perks"><span><b>✧</b> Demonstrações em vídeo</span><span><b>✧</b> Opiniões de quem mostra o produto</span><span><b>✧</b> Link na mesma vitrine</span></div><a href="https://www.youtube.com/@Alien_Okyak/videos" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Conhecer meu YouTube <span aria-hidden="true">↗</span></a></div><div class="video-showcase"><div class="video-showcase-head"><span><i></i> ALIEN OKYAK / UNBOXING LAB</span><span>▶ YOUTUBE</span></div><div class="video-stage" id="featured-video"><span class="stage-orbit stage-orbit-1"></span><span class="stage-orbit stage-orbit-2"></span><div class="stage-inner"><div class="stage-play">▶</div><small>AGUARDANDO TRANSMISSÃO</small><strong>Seu próximo unboxing pode aparecer aqui.</strong><span>Cadastre o link de um vídeo no catálogo.</span></div></div><div class="video-showcase-foot"><span>CONTEÚDO DO CANAL</span><span>ALIEN OKYAK ©</span></div></div></div></section>
+    <section class="video-section" id="videos"><div class="shell video-layout"><div class="video-left"><span class="section-kicker"><span></span> UNBOXING / NA PRÁTICA</span><h2>Antes de comprar,<br><em>dê o play.</em></h2><p>Quer ver o produto fora da caixa, seus detalhes e como ele funciona? Quando houver um vídeo cadastrado, você poderá assistir aqui ou diretamente no meu canal.</p><div class="video-perks"><span><b>✧</b> Demonstrações em vídeo</span><span><b>✧</b> Opiniões de quem mostra o produto</span><span><b>✧</b> Link na mesma vitrine</span></div><a href="https://www.youtube.com/@Alien_Okyak/videos" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Conhecer meu YouTube <span aria-hidden="true">↗</span></a></div><div class="video-showcase"><div class="video-showcase-head"><span><i></i> ALIEN OKYAK / UNBOXING LAB</span><span>▶ YOUTUBE</span></div><div class="video-stage" id="featured-video"><span class="stage-orbit stage-orbit-1"></span><span class="stage-orbit stage-orbit-2"></span><div class="stage-inner"><div class="stage-play">▶</div><small>AGUARDANDO TRANSMISSÃO</small><strong>Vídeos do Alien Okyak, escolhidos para você.</strong><span>Escolhendo um vídeo para reproduzir...</span></div></div><!-- CONTROLES: o site escolhe um vídeo aleatório da lista abaixo. -->
+<div class="random-video-controls" id="random-video-controls" hidden>
+  <div class="random-video-meta"><span class="random-video-tag">✦ VÍDEO SORTEADO DO CANAL</span><strong id="random-video-title">Vídeo do Alien Okyak</strong><small>Reprodução automática sem som, quando permitida pelo navegador.</small></div>
+  <div class="random-video-buttons">
+    <button type="button" class="random-video-next" id="random-video-next" aria-label="Sortear outro vídeo do canal">↻ Outro vídeo</button>
+    <a class="random-video-open" id="random-video-open" href="https://www.youtube.com/@Alien_Okyak/videos" target="_blank" rel="noopener noreferrer">Ver no YouTube ↗</a>
+  </div>
+</div>
+<div class="video-showcase-foot"><span>CONTEÚDO DO CANAL</span><span>ALIEN OKYAK ©</span></div></div></div></section>
 
     <section id="como-funciona" class="how shell"><div class="how-header"><span class="section-kicker"><span></span> SIMPLES ASSIM</span><h2>Da descoberta <em>ao clique.</em></h2></div><div class="steps"><article class="step"><span class="step-number">01 <b>↗</b></span><div class="step-emoji">🔎</div><h3>Encontre o produto</h3><p>Navegue pelos achadinhos, passe pelas fotos e leia a descrição.</p></article><article class="step"><span class="step-number">02 <b>↗</b></span><div class="step-emoji">📺</div><h3>Assista ao vídeo</h3><p>Se tiver unboxing, veja como o produto é na prática.</p></article><article class="step"><span class="step-number">03 <b>↗</b></span><div class="step-emoji">🛍️</div><h3>Vá para a loja</h3><p>Clique no link de afiliado e compre diretamente com o vendedor.</p></article></div></section>
 
@@ -391,6 +399,23 @@
     <div class="photo-dialog-footer" id="photo-dialog-count">1 / 1</div>
   </dialog>
   <!-- Produtos editáveis no próprio index.html. Alternativamente, use editor.html. -->
+  <!-- ===========================================================
+       VÍDEOS DO CANAL PARA SORTEIO — EDITE SÓ ESTA LISTA!
+       Cole um link real do YouTube em cada campo "url".
+       Você pode adicionar/remover quantas entradas quiser, separadas por vírgula.
+       Os 3 links iniciais foram compartilhados no perfil público
+       @Alien_Okyak, que aponta para o canal, mas confirme se são
+       uploads seus antes de publicar.
+       A cada abertura da página, um deles é escolhido aleatoriamente.
+       Se não houver vídeos válidos, o site mostra mensagem de cadastro.
+       =========================================================== -->
+  <script type="application/json" id="okyak-videos-list">
+  [
+    {"url":"https://youtu.be/CWUZqX2px-I","titulo":"Vídeo 01 — Alien Okyak"},
+    {"url":"https://youtu.be/ujE66oWWpU4","titulo":"GTA V • Halloween"},
+    {"url":"https://youtu.be/KF1iTWxEw-U","titulo":"Fortnite • Alien Okyak"}
+  ]
+  </script>
   <script src="app.js"></script>
 </body>
 </html>

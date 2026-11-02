@@ -315,22 +315,73 @@
     render();
   });
 
-  const firstWithVideo = cards.find(c => c.dataset.videoId);
-  if (firstWithVideo && featured) {
-    const id = firstWithVideo.dataset.videoId;
-    const title = firstWithVideo.querySelector('h3')?.textContent?.trim() || 'Unboxing';
-    const thumb = document.createElement('button');
-    thumb.type = 'button';
-    thumb.className = 'video-thumb';
-    thumb.setAttribute('aria-label', `Assistir ${title}`);
-    const img = document.createElement('img');
-    img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-    img.alt = `Miniatura do vídeo ${title}`;
-    img.loading = 'lazy';
-    thumb.append(img);
-    thumb.addEventListener('click', () => openVideo(id, title));
-    featured.replaceChildren(thumb);
+  // ================================================================
+  // VÍDEOS ALEATÓRIOS DO CANAL - CONFIGURAÇÃO NO FINAL DO index.html.
+  // A página escolhe um dos links válidos em cada carregamento.
+  // Reprodução automática sempre silenciada por respeito ao visitante.
+  // O player oficial do YouTube oferece controle de som e reprodução.
+  // ================================================================
+  const videoLinksConfig = document.querySelector('#okyak-videos-list');
+  const randomControls = document.querySelector('#random-video-controls');
+  const randomTitle = document.querySelector('#random-video-title');
+  const randomNextButton = document.querySelector('#random-video-next');
+  const randomOpenLink = document.querySelector('#random-video-open');
+  let channelVideos = [];
+  let lastChannelVideo = null;
+  if (videoLinksConfig) {
+    try {
+      const entries = JSON.parse(videoLinksConfig.textContent || '[]');
+      if (Array.isArray(entries)) {
+        const ids = new Set();
+        channelVideos = entries.map((entry, index) => {
+          const url = typeof entry === 'string' ? entry : entry?.url;
+          const id = youtubeId(url);
+          if (!id || ids.has(id)) return null;
+          ids.add(id);
+          const title = typeof entry === 'object' && typeof entry?.titulo === 'string'
+            ? entry.titulo.trim() : '';
+          return {id, title: title || `Vídeo ${index+1} — Alien Okyak`, url: `https://www.youtube.com/watch?v=${id}`};
+        }).filter(Boolean);
+      }
+    } catch (error) {
+      console.warn('Confira a lista de vídeos do index.html (JSON inválido).', error);
+    }
   }
+  // Quando não há lista cadastrada, aproveita os vídeos de unboxing dos produtos.
+  if (channelVideos.length === 0) {
+    const ids = new Set();
+    channelVideos = cards.map(card => {
+      const id = card.dataset.videoId;
+      if (!id || ids.has(id)) return null;
+      ids.add(id);
+      return {id, title: card.querySelector('h3')?.textContent?.trim() || 'Unboxing', url: `https://www.youtube.com/watch?v=${id}`};
+    }).filter(Boolean);
+  }
+  const chooseVideo = () => {
+    const available = channelVideos.length > 1
+      ? channelVideos.filter(item => item.id !== lastChannelVideo) : channelVideos;
+    return available[Math.floor(Math.random()*available.length)];
+  };
+  function playRandomChannelVideo() {
+    if (!featured || !channelVideos.length) return;
+    const choice = chooseVideo();
+    if (!choice) return;
+    lastChannelVideo = choice.id;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${choice.id}?autoplay=1&mute=1&playsinline=1&rel=0`;
+    iframe.title = `Vídeo selecionado: ${choice.title}`;
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.loading = 'lazy';
+    featured.replaceChildren(iframe);
+    featured.classList.add('has-random-video');
+    if (randomTitle) randomTitle.textContent = choice.title;
+    if (randomOpenLink) randomOpenLink.href = choice.url;
+    if (randomControls) randomControls.hidden = false;
+  }
+  randomNextButton?.addEventListener('click', playRandomChannelVideo);
+  playRandomChannelVideo();
   const menuButton = document.querySelector('.menu-toggle');
   const mobileMenu = document.querySelector('#mobile-menu');
   menuButton?.addEventListener('click', () => {
