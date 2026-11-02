@@ -1,0 +1,16 @@
+OKYAK UNBOX — MENU CORRIGIDO
+
+Menu fixo: Todos | Gamer | Tecnologia | Setup | Acessórios | Moda
+
+Para alterar a categoria de um produto no index.html, altere dois campos:
+1) <article class="product-card" data-category="Gamer" ...>
+2) <span class="product-category">Gamer</span>
+
+Outras categorias aceitas: Tecnologia, Setup, Acessórios, Moda.
+Todos é automático.
+
+Você também pode usar editor.html: carregue index.html, escolha um produto,
+selecione a categoria no formulário e baixe o novo index.html.
+
+Para publicar no GitHub: atualize index.html e app.js. Mantenha sua pasta
+assets/ com as fotos reais já publicadas.

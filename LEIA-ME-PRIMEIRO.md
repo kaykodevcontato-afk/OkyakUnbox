@@ -1,7 +1,7 @@
 # OKYAK UNBOX — CATALOGO EDITÁVEL DIRETAMENTE NO HTML
 
 Versão com foto inteira sem zoom, galerias de várias fotos, vídeos opcionais,
-links de afiliados e 5 blocos prontos para novos produtos.
+links de afiliados, menu fixo de categorias e 5 blocos prontos para novos produtos.
 
 ## OPÇÃO A — MAIS SIMPLES: editar o index.html
 
@@ -11,7 +11,7 @@ link real da Shopee (8BitDo) e 5 espaços EXEMPLO para preencher.
 
 **Dentro de cada `<article class="product-card">` você encontra:**
 
-1. **Categoria:** `data-category="Games"`. Altere também o texto `<span class="product-category">Games</span>`.
+1. **Categoria:** `data-category="Gamer"`. Altere também o texto `<span class="product-category">Gamer</span>`. Escolha apenas: **Gamer, Tecnologia, Setup, Acessórios ou Moda**.
 2. **Vídeo do YouTube (opcional):** `data-youtube=""`. Preencha com `https://www.youtube.com/watch?v=ID_DO_VIDEO` para mostrar um slide de vídeo na galeria e o botão Ver vídeo.
 3. **Foto principal:** `<img src="assets/minha-foto.webp" ...>` — a imagem deve existir em `assets/`.
 4. **Foto extra 2:** `<img src="" ...>` — substitua `""` por `"assets/minha-foto-2.webp"`.
@@ -46,3 +46,11 @@ Coloque a foto com esse nome em `assets/` ou altere o `src` para o nome correto.
 No seu repositório `OkyakUnbox23`, substitua **index.html, style.css, app.js** e envie a pasta **assets** com as fotos. O arquivo `editor.html` é opcional e pode ser mantido apenas no seu computador. Não precisa de `produtos.js`: os produtos desta versão ficam no HTML (não misture sistemas de catálogo diferentes).
 
 A vitrine não vende diretamente nem controla estoque. Ao publicar fotos/links, verifique as permissões e regras dos programas de afiliados. O preço e a entrega pertencem às lojas.
+
+## MENU DE CATEGORIAS (ATUALIZADO)
+
+O catálogo agora exibe sempre nesta ordem: **Todos | Gamer | Tecnologia | Setup | Acessórios | Moda**.
+A categoria **Moda** aparece mesmo que ainda não tenha produtos. Quando estiver vazia, o site mostra a mensagem de nenhum produto encontrado.
+Os produtos que antes estavam como **Games** foram convertidos para **Gamer**; o espaço de **Áudio** foi colocado em **Tecnologia**.
+
+**Importante:** ao criar produtos, use exatamente um desses cinco nomes no atributo `data-category` e no texto `.product-category`. O botão **Todos** é automático, não deve ser utilizado como categoria de um produto. O editor `editor.html` agora oferece as categorias em um seletor.

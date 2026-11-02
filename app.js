@@ -269,7 +269,20 @@
     show(0);
   }
 
-  const categories = ['Todos', ...new Set(cards.map(c => c.dataset.category || 'Outros'))];
+  // FILTROS FIXOS: mantidos na ordem solicitada, mesmo sem produtos na categoria.
+  const categories = ['Todos', 'Gamer', 'Tecnologia', 'Setup', 'Acessórios', 'Moda'];
+  // Compatibilidade com categorias antigas: Games agora é Gamer.
+  // Produtos de Áudio passam ao grupo Tecnologia (não há botão Áudio).
+  const legacyCategories = { 'Games': 'Gamer', 'Game': 'Gamer', 'Áudio': 'Tecnologia', 'Audio': 'Tecnologia' };
+  for (const card of cards) {
+    const previous = (card.dataset.category || '').trim();
+    const current = legacyCategories[previous] || previous;
+    if (current !== previous) {
+      card.dataset.category = current;
+      const label = card.querySelector('.product-category');
+      if (label) label.textContent = current;
+    }
+  }
   function renderCategories() {
     if (!categoryHost) return;
     categoryHost.replaceChildren();
