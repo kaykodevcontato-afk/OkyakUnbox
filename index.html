@@ -372,12 +372,15 @@
 
   <dialog id="video-dialog" class="video-dialog" aria-label="Vídeo de unboxing"><div class="dialog-header"><strong id="dialog-title">Unboxing</strong><button id="close-dialog" type="button" aria-label="Fechar vídeo">×</button></div><div class="dialog-video" id="dialog-video"></div><p>Vídeo incorporado do YouTube. O conteúdo pertence ao canal indicado no vídeo.</p></dialog>
 
-  <!-- VISUALIZADOR DE FOTOS — imagens completas, sem corte. -->
+  <!-- VISUALIZADOR DE FOTOS — sem zoom e sem corte, inclusive no celular. -->
   <dialog id="photo-dialog" class="photo-dialog" aria-label="Visualizar fotos do produto">
     <div class="photo-dialog-header"><strong id="photo-dialog-title">Foto do produto</strong><button id="close-photo" type="button" aria-label="Fechar foto">×</button></div>
     <div class="photo-dialog-main">
       <button class="photo-dialog-arrow" id="photo-prev" type="button" aria-label="Foto anterior">‹</button>
-      <img id="photo-dialog-img" src="assets/produto.svg" alt="Foto ampliada do produto">
+      <!-- Visor contido: a imagem nunca passa dos limites disponíveis -->
+      <div class="photo-stage">
+        <img id="photo-dialog-img" src="assets/produto.svg" alt="Foto completa do produto">
+      </div>
       <button class="photo-dialog-arrow" id="photo-next" type="button" aria-label="Próxima foto">›</button>
     </div>
     <div class="photo-dialog-footer" id="photo-dialog-count">1 / 1</div>

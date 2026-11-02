@@ -162,6 +162,17 @@
       img.addEventListener('error', () => {
         if (!img.src.endsWith('/assets/produto.svg')) img.src = 'assets/produto.svg';
       });
+      // Clicar ou pressionar Enter/Espaço abre a foto INTEIRA no visor.
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', `Ver foto inteira: ${img.alt || title}`);
+      img.addEventListener('click', () => openPhoto(card, img));
+      img.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openPhoto(card, img);
+        }
+      });
     }
 
     if (id) {

@@ -1,0 +1,25 @@
+OKYAK UNBOX — CORREÇÃO DO VISOR DE FOTOS (02/11/2026)
+
+O que foi corrigido
+- As fotos da vitrine continuam inteiras, sem zoom ao passar o mouse.
+- Agora clicar na foto abre a imagem em um visor amplo sem cortar nada.
+- O botão "Ampliar" abre o mesmo visor corrigido.
+- Setas, teclado (←/→), miniaturas e fotos adicionais continuam funcionando.
+- O vídeo opcional do YouTube continua funcionando.
+- O site continua com 6 cartões cadastráveis diretamente no index.html, além do editor.html.
+
+IMPORTANTE: os arquivos .webp reais do 8BitDo não vieram junto com o HTML enviado.
+Para exibir as três fotos, adicione na pasta assets/ exatamente estes arquivos:
+  controle 8bitdo ultimate2.webp
+  controle8bitdoulti2roxo.webp
+  configure8bitdoulti2.webp
+Caso não adicione, a vitrine exibirá uma imagem reserva.
+
+PARA ATUALIZAR NO GITHUB PAGES
+1. Extraia este ZIP.
+2. Substitua no repositório OkyakUnbox23: index.html, style.css e app.js.
+3. Preserve/adicione as fotos reais na pasta assets/.
+4. Mantenha editor.html e a pasta assets/. Não é necessário apagar seus produtos.
+5. Aguarde a publicação e use Ctrl+F5 para atualizar o cache.
+
+Se desejar corrigir somente o visor na sua versão atual, os principais arquivos modificados foram index.html, style.css e app.js.
