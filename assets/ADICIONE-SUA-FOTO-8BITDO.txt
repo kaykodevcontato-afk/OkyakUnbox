@@ -1,0 +1,3 @@
+Adicione aqui sua foto autorizada: controle 8bitdo ultimate2.webp.
+Ou altere imagem em produtos.js para o nome correto.
+A ilustração controle.svg é exibida até essa foto existir.

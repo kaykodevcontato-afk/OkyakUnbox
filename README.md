@@ -6,12 +6,12 @@ Vitrine de produtos e unboxings com links de afiliados. **Não é uma loja:** n�
 
 ## Como abrir
 
-Extraia o arquivo ZIP e abra `index.html` no navegador. O **primeiro cartão** já inclui o link real da Shopee fornecido por você (`https://s.shopee.com.br/LoTQQzcUs`), mas o nome e a foto ainda precisam ser confirmados. Os outros seis cartões são **somente exemplos**, com ilustrações criadas para o projeto.
+Extraia o arquivo ZIP e abra `index.html` no navegador. Os seis cartões iniciais são **somente exemplos**, com ilustrações criadas para o projeto; links de compras e vídeos estão vazios por segurança. Quando você cadastrar um produto real, substitua o conteúdo e a imagem.
 
 ## Cadastrar produtos sem programar (mais fácil)
 
 1. Abra `editor.html` no navegador. Ele permite criar, alterar, excluir e organizar seus produtos.
-2. Selecione o primeiro produto (Shopee), clique em **Tentar buscar título e foto pelo link**. Se a loja bloquear, adicione a foto no botão para selecionar um arquivo, ou cole uma URL pública da foto. Complete **nome**, **categoria**, **descrição**, **link de afiliado** e (se houver) **vídeo do YouTube**. Revise os dados importados antes de publicar.
+2. Preencha **nome**, **categoria**, **descrição**, **link da foto**, **fotos extras (uma por linha)**, **link de afiliado** e, se existir, **link do vídeo no YouTube**.
 3. Clique em **Baixar produtos.js**.
 4. **Substitua** o arquivo `produtos.js` da pasta principal pelo arquivo que você baixou.
 5. Abra `index.html` novamente para ver os novos cartões.
@@ -39,7 +39,7 @@ Abra `produtos.js` e altere um item no array `window.OKYAK_PRODUCTS`. Exemplo:
 }
 ```
 
-- **Foto:** no editor você pode escolher uma foto JPG/PNG/WebP de seu computador. Ela será redimensionada e incorporada ao `produtos.js`, sem precisar enviar arquivo separado. Também aceita uma URL HTTPS pública ou `assets/nome-da-foto.jpg` (neste caso, publique a foto na pasta). A tentativa automática usa a prévia de um serviço externo (Microlink), cuja resposta pode falhar ou apontar a imagem errada, especialmente em anúncios da Shopee.
+- **Foto:** use uma URL pública HTTPS ou salve uma imagem `.jpg/.png/.webp` em `assets/` e escreva `assets/nome-da-foto.jpg`. Ao publicar no GitHub, envie a foto junto.
 - **Vídeo:** aceita `youtube.com/watch?v=...`, `youtu.be/...`, `youtube.com/shorts/...` e `/live/...`; com o link válido aparece o botão **▶ Ver vídeo**. Um vídeo também passa a aparecer em destaque na seção Unboxings.
 - **Afiliado:** sem link, o botão fica **Link em breve**. Com URL HTTPS válida, abre a loja em outra aba.
 - **Preço:** não é exibido, para evitar valores desatualizados. O cliente consulta o preço real na loja.
@@ -55,7 +55,7 @@ Abra `produtos.js` e altere um item no array `window.OKYAK_PRODUCTS`. Exemplo:
 
 ## Recomendações antes de divulgar
 
-- Confirme o nome/foto do primeiro produto Shopee, que já tem link de afiliado, e remova ou substitua os outros seis produtos de exemplo, que **não têm links reais**.
+- Remova ou substitua os seis produtos de exemplo, que **não têm links reais**.
 - Só use fotos de fornecedores, catálogos ou materiais para os quais você tem autorização de uso. Verifique as regras do programa de afiliados escolhido.
 - Não diga que testou um produto sem ter testado. Quando não houver vídeo próprio, deixe o campo YouTube vazio.
 - Se você participa de programas de afiliados, mantenha visível a informação sobre comissões e cumpra os termos das plataformas.
@@ -74,10 +74,13 @@ Abra `produtos.js` e altere um item no array `window.OKYAK_PRODUCTS`. Exemplo:
 ---
 Site demonstrativo criado para o universo **Alien Okyak**. Atualize os links de produtos antes de divulgar ao público.
 
-## Anúncio da Shopee adicionado
 
-- Link recebido: https://s.shopee.com.br/LoTQQzcUs
-- Identificadores encontrados ao seguir o redirecionamento: loja `1078550946`, produto `58207406631`.
-- Foto/nome **não foram confirmados**: a Shopee bloqueou a extração automática pelo ambiente desta edição. Por isso o cartão foi marcado como FOTO PENDENTE e usa uma imagem ilustrativa.
-- Para confirmar no navegador, abra o anúncio da Shopee, selecione uma foto autorizada do produto e coloque-a no editor. O botão **Ver na loja** conserva o link curto original de afiliado.
-- O editor pode consultar um serviço externo de metadados somente quando você apertar **Tentar buscar título e foto pelo link**. Não envie dados privados pelo link.
+## Correção do zoom e galeria (versão atualizada)
+
+- Corrigimos `style.css`: todas as imagens dos produtos usam **object-fit: contain** e não aumentam ao passar o mouse. O card pode levantar suavemente, mas a fotografia nunca é ampliada.
+- A galeria tem setas, miniaturas e visualização ampliada (também sem cortes). No celular, deslize para trocar de foto.
+- Para adicionar imagens, edite `produtos.js`: `imagem` é a foto principal e `imagens` é um array com fotos extras. O editor `editor.html` também tem o campo **Fotos extras**, uma URL/caminho por linha.
+- Quando `youtube` tiver URL válida, a última miniatura da galeria abre o unboxing no mesmo site.
+- O produto **Controle 8BitDo Ultimate 2** já foi incluído com o link de afiliado compartilhado anteriormente. **Sua fotografia real não foi enviada**; adicione `assets/controle 8bitdo ultimate2.webp` na pasta `assets/` para ela aparecer. Enquanto isso, será exibido o desenho reserva `assets/controle.svg` (não uma foto do produto).
+- Para subir no GitHub Pages, substitua **index.html, style.css, app.js, produtos.js e assets/** no repositório. O `editor.html` é opcional, útil apenas para você.
+- **Atenção:** seu site publicado pode usar uma versão do `index.html` diferente da versão enviada aqui. Se quiser manter exatamente os cartões cadastrados diretamente no HTML público e corrigir apenas o zoom, **envie somente o novo `style.css`** ao GitHub; as regras finais também funcionam nessa versão. Para ativar a galeria neste pacote, use os arquivos completos e migre/adapte o catálogo para `produtos.js`.
