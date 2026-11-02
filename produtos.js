@@ -1,6 +1,7 @@
 /*
  * CATÁLOGO OKYAK UNBOX
- * Estes 6 itens são apenas DEMONSTRATIVOS: troque por produtos reais.
+ * O primeiro cartão é o link real enviado pelo criador, ainda com foto/nome pendentes.
+ * Os outros 6 itens são apenas DEMONSTRATIVOS: troque por produtos reais.
  * Para editar sem programar, abra editor.html e exporte um novo produtos.js.
  * Campos: id, nome, categoria, descricao, imagem, fallback,
  *          afiliado, youtube, selo, destaque, demo.
@@ -9,6 +10,20 @@
  * Para ativar botão de compra: afiliado: "https://LINK_DE_AFILIADO".
  */
 window.OKYAK_PRODUCTS = [
+  {
+    id:"shopee-58207406631",
+    nome:"Produto Shopee — adicionar nome",
+    categoria:"Achadinhos",
+    descricao:"Link de afiliado cadastrado. O título e a foto deste anúncio ainda precisam ser confirmados no editor.",
+    imagem:"assets/produto.svg",
+    fallback:"assets/produto.svg",
+    afiliado:"https://s.shopee.com.br/LoTQQzcUs",
+    youtube:"",
+    selo:"SHOPEE",
+    destaque:false,
+    demo:false,
+    fotoPendente:true
+  },
   {id:"demo-1", nome:"Headset gamer RGB", categoria:"Áudio", descricao:"Espaço reservado para contar o que chama atenção neste headset.", imagem:"assets/headset.svg", fallback:"assets/headset.svg", afiliado:"", youtube:"", selo:"GADGET", destaque:true, demo:true},
   {id:"demo-2", nome:"Controle Bluetooth", categoria:"Games", descricao:"Apresente compatibilidade, funções e detalhes do controle.", imagem:"assets/controle.svg", fallback:"assets/controle.svg", afiliado:"", youtube:"", selo:"GAMER", destaque:true, demo:true},
   {id:"demo-3", nome:"Teclado mecânico", categoria:"Setup", descricao:"Um espaço para mostrar os recursos, a iluminação e a experiência de uso.", imagem:"assets/teclado.svg", fallback:"assets/teclado.svg", afiliado:"", youtube:"", selo:"SETUP", destaque:false, demo:true},
