@@ -1,29 +1,153 @@
-(()=>{'use strict';
-const products=Array.isArray(window.OKYAK_PRODUCTS)?window.OKYAK_PRODUCTS:[];
-const grid=document.querySelector('#product-grid');const categoryHost=document.querySelector('#categories');const search=document.querySelector('#search');const count=document.querySelector('#result-count');const empty=document.querySelector('#empty-state');
-let category='Todos';let query='';
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const safeUrl=s=>{try{const u=new URL(String(s));return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}};
-const safeImage=s=>{const t=String(s||'').trim();if(/^(?:\.\/)?(?:assets|images)\/[\w./% -]+$/i.test(t)&&!t.includes('..'))return t;if(/^data:image\/(?:svg\+xml|png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(t))return t;return safeUrl(t)};
-const youtubeId=s=>{const url=safeUrl(s);if(!url)return '';try{const u=new URL(url),host=u.hostname.toLowerCase().replace(/^www\./,'');let id='';if(host==='youtu.be')id=u.pathname.slice(1).split('/')[0];else if(['youtube.com','m.youtube.com','youtube-nocookie.com','music.youtube.com'].includes(host)){if(u.pathname==='/watch')id=u.searchParams.get('v')||'';else if(/^\/(shorts|embed|live)\//.test(u.pathname))id=u.pathname.split('/')[2]||''}return /^[a-zA-Z0-9_-]{11}$/.test(id)?id:''}catch{return ''}};
-const categories=['Todos',...new Set(products.map(p=>p.categoria||'Outros'))];
-function renderCategories(){categoryHost.innerHTML=categories.map(c=>`<button type="button" class="category-btn ${c===category?'active':''}" data-category="${esc(c)}" aria-pressed="${c===category}">${esc(c)}</button>`).join('');}
-function card(p){const image=safeImage(p.imagem)||'assets/produto.svg';const backup=safeImage(p.fallback)||'assets/produto.svg';const link=safeUrl(p.afiliado);const video=youtubeId(p.youtube);const img=`<img src="${esc(image)}" alt="${esc(p.demo||p.fotoPendente?'Imagem temporária — substitua pela foto real de '+p.nome:'Foto de '+p.nome)}" loading="lazy" onerror="this.onerror=null;this.src='${esc(backup)}'">`;
-const badge=p.selo?`<span class="card-badge">${esc(p.selo)}</span>`:'<span></span>';
-const photoPending=!!p.fotoPendente;
-const buy=link?`<a class="buy-link" href="${esc(link)}" target="_blank" rel="noopener noreferrer sponsored" aria-label="Abrir ${esc(p.nome)} na loja parceira">Ver na loja <span class="external-arrow">↗</span></a>`:`<span class="buy-link disabled" title="Cadastre o link de afiliado deste produto">Link em breve <span>↗</span></span>`;
-const watch=video?`<button type="button" class="watch-link" data-video="${esc(video)}" data-title="${esc(p.nome)}" aria-label="Assistir unboxing de ${esc(p.nome)}">▶ Ver vídeo</button>`:'';
-return `<article class="product-card"><div class="product-image">${img}<div class="card-overlays">${badge}${p.demo?'<span class="card-demo">EXEMPLO</span>':photoPending?'<span class="card-demo">FOTO PENDENTE</span>':''}</div><div class="card-bottom-hint">OKYAK / PRODUCTS</div></div><div class="product-body"><span class="product-category">${esc(p.categoria||'Produtos')}</span><h3>${esc(p.nome)}</h3><p>${esc(p.descricao||'Confira os detalhes na loja parceira.')}</p><div class="product-details"><span>${video?'▶ Vídeo disponível':'◈ Confira o produto'}</span><span>Preço na loja ↗</span></div><div class="product-actions">${buy}${watch}</div></div></article>`;
-}
-function render(){const filtered=products.filter(p=>(category==='Todos'||p.categoria===category)&&[p.nome,p.categoria,p.descricao].join(' ').toLocaleLowerCase('pt-BR').includes(query));grid.innerHTML=filtered.map(card).join('');count.textContent=`${filtered.length} ${filtered.length===1?'PRODUTO ENCONTRADO':'PRODUTOS ENCONTRADOS'}`;empty.hidden=filtered.length>0;renderCategories();}
-categoryHost?.addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(b){category=b.dataset.category;render();}});
-search?.addEventListener('input',e=>{query=e.target.value.trim().toLocaleLowerCase('pt-BR');render();});
-document.querySelector('#clear-filters')?.addEventListener('click',()=>{category='Todos';query='';search.value='';render();search.focus()});
-const dialog=document.querySelector('#video-dialog');const dialogHost=document.querySelector('#dialog-video');
-function openVideo(id,name){if(!id||!dialog)return;document.querySelector('#dialog-title').textContent=name;const iframe=document.createElement('iframe');iframe.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;iframe.title='Vídeo do YouTube: '+name;iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';iframe.referrerPolicy='strict-origin-when-cross-origin';iframe.allowFullscreen=true;dialogHost.replaceChildren(iframe);dialog.showModal();}
-grid?.addEventListener('click',e=>{const b=e.target.closest('[data-video]');if(b)openVideo(b.dataset.video,b.dataset.title)});
-function closeVideo(){dialog?.close();dialogHost.replaceChildren();}document.querySelector('#close-dialog')?.addEventListener('click',closeVideo);dialog?.addEventListener('close',()=>dialogHost.replaceChildren());dialog?.addEventListener('click',e=>{if(e.target===dialog)closeVideo()});
-const firstWithVideo=products.find(p=>youtubeId(p.youtube));const featured=document.querySelector('#featured-video');if(firstWithVideo&&featured){const id=youtubeId(firstWithVideo.youtube);featured.innerHTML=`<button class="video-thumb" type="button" aria-label="Assistir ${esc(firstWithVideo.nome)}"><img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="Miniatura do vídeo ${esc(firstWithVideo.nome)}" loading="lazy"></button>`;featured.querySelector('button').addEventListener('click',()=>openVideo(id,firstWithVideo.nome));}
-const menuButton=document.querySelector('.menu-toggle');const mobileMenu=document.querySelector('#mobile-menu');menuButton?.addEventListener('click',()=>{const expand=menuButton.getAttribute('aria-expanded')!=='true';menuButton.setAttribute('aria-expanded',String(expand));mobileMenu.hidden=!expand});mobileMenu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.hidden=true;menuButton.setAttribute('aria-expanded','false')}));
-document.querySelector('#year').textContent=new Date().getFullYear();render();
+/* OKYAK UNBOX — Os produtos ficam no index.html, dentro de #product-grid. */
+(() => {
+  'use strict';
+  const grid = document.querySelector('#product-grid');
+  if (!grid) return;
+  const cards = [...grid.querySelectorAll('.product-card')];
+  const categoryHost = document.querySelector('#categories');
+  const search = document.querySelector('#search');
+  const count = document.querySelector('#result-count');
+  const empty = document.querySelector('#empty-state');
+  const featured = document.querySelector('#featured-video');
+  const dialog = document.querySelector('#video-dialog');
+  const dialogHost = document.querySelector('#dialog-video');
+  let category = 'Todos';
+  let query = '';
+
+  const validHttpUrl = (raw) => {
+    try {
+      const url = new URL(String(raw || '').trim());
+      return ['https:', 'http:'].includes(url.protocol) && !!url.hostname;
+    } catch { return false; }
+  };
+  const youtubeId = (raw) => {
+    if (!validHttpUrl(raw)) return '';
+    try {
+      const url = new URL(raw);
+      const host = url.hostname.toLowerCase().replace(/^www\./, '');
+      let id = '';
+      if (host === 'youtu.be') id = url.pathname.split('/')[1] || '';
+      else if (['youtube.com', 'm.youtube.com', 'youtube-nocookie.com', 'music.youtube.com'].includes(host)) {
+        if (url.pathname === '/watch') id = url.searchParams.get('v') || '';
+        else if (/^\/(shorts|embed|live)\//.test(url.pathname)) id = url.pathname.split('/')[2] || '';
+      }
+      return /^[a-zA-Z0-9_-]{11}$/.test(id) ? id : '';
+    } catch { return ''; }
+  };
+
+  function openVideo(id, title) {
+    if (!id || !dialog || !dialogHost) return;
+    document.querySelector('#dialog-title').textContent = title;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+    iframe.title = `Vídeo do YouTube: ${title}`;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allowFullscreen = true;
+    dialogHost.replaceChildren(iframe);
+    dialog.showModal();
+  }
+  function closeVideo() { dialog?.close(); dialogHost?.replaceChildren(); }
+  document.querySelector('#close-dialog')?.addEventListener('click', closeVideo);
+  dialog?.addEventListener('close', () => dialogHost?.replaceChildren());
+  dialog?.addEventListener('click', (e) => { if (e.target === dialog) closeVideo(); });
+
+  // Ajusta automaticamente links, miniaturas, botões de vídeo e categorias.
+  for (const card of cards) {
+    const title = card.querySelector('h3')?.textContent?.trim() || 'Produto';
+    const buy = card.querySelector('.buy-link');
+    const affiliateUrl = buy?.getAttribute('href')?.trim() || '';
+    if (buy) {
+      if (!validHttpUrl(affiliateUrl)) {
+        buy.removeAttribute('href');
+        buy.setAttribute('aria-disabled', 'true');
+        buy.classList.add('disabled');
+        buy.innerHTML = 'Link em breve <span class="external-arrow">↗</span>';
+      } else {
+        buy.target = '_blank';
+        buy.rel = 'noopener noreferrer sponsored';
+        buy.setAttribute('aria-label', `Abrir ${title} na loja parceira`);
+      }
+    }
+    const img = card.querySelector('.product-image img');
+    img?.addEventListener('error', () => {
+      if (img.getAttribute('src') !== 'assets/produto.svg') img.src = 'assets/produto.svg';
+    });
+    const id = youtubeId(card.dataset.youtube?.trim());
+    card.dataset.videoId = id;
+    const watch = card.querySelector('.watch-link');
+    const status = card.querySelector('.product-video-status');
+    if (id && watch) {
+      watch.hidden = false;
+      watch.setAttribute('aria-label', `Assistir unboxing de ${title}`);
+      watch.addEventListener('click', () => openVideo(id, title));
+      if (status) status.textContent = '▶ Vídeo disponível';
+    } else if (watch) {
+      watch.hidden = true;
+    }
+  }
+
+  const categories = ['Todos', ...new Set(cards.map(c => c.dataset.category || 'Outros'))];
+  function renderCategories() {
+    if (!categoryHost) return;
+    categoryHost.replaceChildren();
+    for (const name of categories) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'category-btn' + (name === category ? ' active' : '');
+      button.textContent = name;
+      button.setAttribute('aria-pressed', String(name === category));
+      button.addEventListener('click', () => { category = name; render(); });
+      categoryHost.append(button);
+    }
+  }
+  function render() {
+    let shown = 0;
+    for (const card of cards) {
+      const data = (card.querySelector('.product-body')?.textContent || '').toLocaleLowerCase('pt-BR');
+      const match = (category === 'Todos' || card.dataset.category === category) && data.includes(query);
+      card.hidden = !match;
+      if (match) shown++;
+    }
+    if (count) count.textContent = `${shown} ${shown === 1 ? 'PRODUTO ENCONTRADO' : 'PRODUTOS ENCONTRADOS'}`;
+    if (empty) empty.hidden = shown > 0;
+    renderCategories();
+  }
+  search?.addEventListener('input', (event) => { query = event.target.value.trim().toLocaleLowerCase('pt-BR'); render(); });
+  document.querySelector('#clear-filters')?.addEventListener('click', () => {
+    category = 'Todos'; query = '';
+    if (search) { search.value = ''; search.focus(); }
+    render();
+  });
+
+  const firstWithVideo = cards.find(c => c.dataset.videoId);
+  if (firstWithVideo && featured) {
+    const id = firstWithVideo.dataset.videoId;
+    const title = firstWithVideo.querySelector('h3')?.textContent?.trim() || 'Unboxing';
+    const thumb = document.createElement('button');
+    thumb.type = 'button';
+    thumb.className = 'video-thumb';
+    thumb.setAttribute('aria-label', `Assistir ${title}`);
+    const img = document.createElement('img');
+    img.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    img.alt = `Miniatura do vídeo ${title}`;
+    img.loading = 'lazy';
+    thumb.append(img);
+    thumb.addEventListener('click', () => openVideo(id, title));
+    featured.replaceChildren(thumb);
+  }
+  const menuButton = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('#mobile-menu');
+  menuButton?.addEventListener('click', () => {
+    const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
+    menuButton.setAttribute('aria-expanded', String(expanded));
+    if (mobileMenu) mobileMenu.hidden = !expanded;
+  });
+  mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.hidden = true;
+    menuButton?.setAttribute('aria-expanded', 'false');
+  }));
+  const year = document.querySelector('#year');
+  if (year) year.textContent = String(new Date().getFullYear());
+  render();
 })();
