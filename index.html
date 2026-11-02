@@ -47,7 +47,7 @@
       </div>
       <div class="hero-art" aria-label="Ilustração de vitrine gamer">
         <div class="hero-orbit hero-orbit-1"></div><div class="hero-orbit hero-orbit-2"></div>
-        <div class="hero-art-head"><span><i></i> ESTAÇÃO OKYAK / ONLINE</span><span>001 — 006</span></div>
+        <div class="hero-art-head"><span><i></i> ESTAÇÃO OKYAK / ONLINE</span><span>OKYAK / UNBOX</span></div>
         <div class="hero-product-glow"></div>
         <img class="hero-controller" src="assets/controle.svg" alt="Ilustração de controle gamer utilizada como demonstração">
         <span class="hero-float float-a">✦ <small>UNBOXING<br>+ PRODUTOS</small></span>
@@ -66,15 +66,302 @@
     <section id="produtos" class="catalog-section shell">
       <div class="section-top"><div><span class="section-kicker"><span></span> CATÁLOGO / EXPLORE</span><h2>Os achados da <em>nave.</em></h2><p>Escolha um produto, confira os detalhes e visite a loja parceira.</p></div><div class="top-stamp">SELEÇÃO<br><strong>ALIEN<br>OKYAK</strong><span>✳</span></div></div>
       <div class="catalog-bar"><div class="categories" id="categories" role="group" aria-label="Filtrar por categoria"></div><label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="search" type="search" placeholder="Buscar um produto..." aria-label="Buscar produto"></label></div>
-      <div class="catalog-meta"><span id="result-count">Carregando catálogo...</span><span>FOTOS SEM CORTES • GALERIA DE PRODUTOS</span></div>
-      <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      <div class="catalog-meta"><span id="result-count">Carregando catálogo...</span><span>FOTOS INTEIRAS • SEM ZOOM</span></div>
+      <!-- ==================================================================
+           ✅ COMO ADICIONAR OU EDITAR PRODUTOS — AQUI NO index.html
+
+           EXISTEM 6 PRODUTOS PRONTOS ABAIXO (1 controle + 5 espaços).
+           1) FOTO PRINCIPAL: altere src="assets/foto.webp"
+           2) FOTOS EXTRAS: preencha os src="" vazios (2, 3 e 4).
+              Campos vazios serão ignorados automaticamente!
+           3) VÍDEO: adicione data-youtube="https://www.youtube.com/watch?v=..."
+              Sem vídeo? mantenha data-youtube="".
+           4) TÍTULO: altere <h3>...</h3>
+           5) DESCRIÇÃO: altere <p>...</p> dentro de .product-body
+           6) LINK AFILIADO: altere href="https://..." em .buy-link
+           7) CATEGORIA: altere data-category e .product-category juntos.
+           8) ADICIONAR MAIS PRODUTOS: copie um artigo <article class="product-card">
+              inteiro até </article> e cole depois do último produto.
+
+           Outra opção: use editor.html para editar e baixar novo index.html.
+           As imagens ficam inteiras — SEM ZOOM e SEM CORTAR.
+           ================================================================== -->
+      <div id="product-grid" class="product-grid" aria-live="polite">
+        <!-- =====================================================
+             PRODUTO 01 — EDITE OS CAMPOS ABAIXO
+             VÍDEO DO YOUTUBE (opcional): data-youtube="https://youtu.be/ID"
+             CATEGORIA / FILTRO: data-category="Games"
+             ===================================================== -->
+        <article class="product-card" data-category="Games" data-youtube="">
+          <div class="product-gallery">
+            <div class="product-image">
+              <div class="gallery-slides">
+                <!-- FOTO PRINCIPAL: coloque o arquivo na pasta assets/ -->
+                <div class="gallery-slide"><img src="assets/controle 8bitdo ultimate2.webp" alt="Foto principal: Controle Gamer 8BitDo Ultimate 2 Gatilhos" loading="lazy"></div>
+                <!-- FOTOS EXTRAS: preencha src="" e elas entrarão na galeria.
+                     Se não preencher, esses espaços NÃO aparecerão no site. -->
+                <div class="gallery-slide"><img src="" alt="Foto 2 — Controle Gamer 8BitDo Ultimate 2 Gatilhos" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 3 — Controle Gamer 8BitDo Ultimate 2 Gatilhos" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 4 — Controle Gamer 8BitDo Ultimate 2 Gatilhos" loading="lazy"></div>
+                <!-- Para 5ª foto ou mais: copie uma linha gallery-slide acima. -->
+              </div>
+              <div class="card-overlays">
+                <span class="card-badge">SHOPEE</span>
+                
+              </div>
+              <div class="card-bottom-hint">OKYAK / PRODUCTS</div>
+            </div>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Games</span>
+            <!-- TÍTULO DO PRODUTO -->
+            <h3>Controle Gamer 8BitDo Ultimate 2 Gatilhos</h3>
+            <!-- DESCRIÇÃO DO PRODUTO -->
+            <p>Controle gamer 8BitDo Ultimate 2. Confira compatibilidade, recursos e especificações na página da loja parceira.</p>
+            <div class="product-details">
+              <span class="product-video-status">◈ Confira o produto</span>
+              <span>Preço na loja ↗</span>
+            </div>
+            <div class="product-actions">
+              <!-- LINK DE AFILIADO: preencha href="https://..." -->
+              <a class="buy-link" href="https://s.shopee.com.br/LoTQQzcUs" target="_blank" rel="noopener noreferrer sponsored">Ver na loja <span class="external-arrow">↗</span></a>
+              <!-- Este botão aparece apenas quando data-youtube for preenchido -->
+              <button class="watch-link" type="button" hidden>▶ Ver vídeo</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- =====================================================
+             PRODUTO 02 — EDITE OS CAMPOS ABAIXO
+             VÍDEO DO YOUTUBE (opcional): data-youtube="https://youtu.be/ID"
+             CATEGORIA / FILTRO: data-category="Tecnologia"
+             ===================================================== -->
+        <article class="product-card" data-category="Tecnologia" data-youtube="">
+          <div class="product-gallery">
+            <div class="product-image">
+              <div class="gallery-slides">
+                <!-- FOTO PRINCIPAL: coloque o arquivo na pasta assets/ -->
+                <div class="gallery-slide"><img src="assets/produto.svg" alt="Foto principal: Produto 02 — cadastre seu achadinho" loading="lazy"></div>
+                <!-- FOTOS EXTRAS: preencha src="" e elas entrarão na galeria.
+                     Se não preencher, esses espaços NÃO aparecerão no site. -->
+                <div class="gallery-slide"><img src="" alt="Foto 2 — Produto 02 — cadastre seu achadinho" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 3 — Produto 02 — cadastre seu achadinho" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 4 — Produto 02 — cadastre seu achadinho" loading="lazy"></div>
+                <!-- Para 5ª foto ou mais: copie uma linha gallery-slide acima. -->
+              </div>
+              <div class="card-overlays">
+                <span class="card-badge">NOVO PRODUTO</span>
+                <span class="card-demo">EXEMPLO — EDITE AQUI</span>
+              </div>
+              <div class="card-bottom-hint">OKYAK / PRODUCTS</div>
+            </div>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Tecnologia</span>
+            <!-- TÍTULO DO PRODUTO -->
+            <h3>Produto 02 — cadastre seu achadinho</h3>
+            <!-- DESCRIÇÃO DO PRODUTO -->
+            <p>Adicione aqui as características e vantagens reais do produto.</p>
+            <div class="product-details">
+              <span class="product-video-status">◈ Confira o produto</span>
+              <span>Preço na loja ↗</span>
+            </div>
+            <div class="product-actions">
+              <!-- LINK DE AFILIADO: preencha href="https://..." -->
+              <a class="buy-link" href="" target="_blank" rel="noopener noreferrer sponsored">Ver na loja <span class="external-arrow">↗</span></a>
+              <!-- Este botão aparece apenas quando data-youtube for preenchido -->
+              <button class="watch-link" type="button" hidden>▶ Ver vídeo</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- =====================================================
+             PRODUTO 03 — EDITE OS CAMPOS ABAIXO
+             VÍDEO DO YOUTUBE (opcional): data-youtube="https://youtu.be/ID"
+             CATEGORIA / FILTRO: data-category="Games"
+             ===================================================== -->
+        <article class="product-card" data-category="Games" data-youtube="">
+          <div class="product-gallery">
+            <div class="product-image">
+              <div class="gallery-slides">
+                <!-- FOTO PRINCIPAL: coloque o arquivo na pasta assets/ -->
+                <div class="gallery-slide"><img src="assets/controle.svg" alt="Foto principal: Produto 03 — seu próximo unboxing" loading="lazy"></div>
+                <!-- FOTOS EXTRAS: preencha src="" e elas entrarão na galeria.
+                     Se não preencher, esses espaços NÃO aparecerão no site. -->
+                <div class="gallery-slide"><img src="" alt="Foto 2 — Produto 03 — seu próximo unboxing" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 3 — Produto 03 — seu próximo unboxing" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 4 — Produto 03 — seu próximo unboxing" loading="lazy"></div>
+                <!-- Para 5ª foto ou mais: copie uma linha gallery-slide acima. -->
+              </div>
+              <div class="card-overlays">
+                <span class="card-badge">NOVO PRODUTO</span>
+                <span class="card-demo">EXEMPLO — EDITE AQUI</span>
+              </div>
+              <div class="card-bottom-hint">OKYAK / PRODUCTS</div>
+            </div>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Games</span>
+            <!-- TÍTULO DO PRODUTO -->
+            <h3>Produto 03 — seu próximo unboxing</h3>
+            <!-- DESCRIÇÃO DO PRODUTO -->
+            <p>Descreva aqui o produto e adicione o vídeo se você tiver gravado um unboxing.</p>
+            <div class="product-details">
+              <span class="product-video-status">◈ Confira o produto</span>
+              <span>Preço na loja ↗</span>
+            </div>
+            <div class="product-actions">
+              <!-- LINK DE AFILIADO: preencha href="https://..." -->
+              <a class="buy-link" href="" target="_blank" rel="noopener noreferrer sponsored">Ver na loja <span class="external-arrow">↗</span></a>
+              <!-- Este botão aparece apenas quando data-youtube for preenchido -->
+              <button class="watch-link" type="button" hidden>▶ Ver vídeo</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- =====================================================
+             PRODUTO 04 — EDITE OS CAMPOS ABAIXO
+             VÍDEO DO YOUTUBE (opcional): data-youtube="https://youtu.be/ID"
+             CATEGORIA / FILTRO: data-category="Áudio"
+             ===================================================== -->
+        <article class="product-card" data-category="Áudio" data-youtube="">
+          <div class="product-gallery">
+            <div class="product-image">
+              <div class="gallery-slides">
+                <!-- FOTO PRINCIPAL: coloque o arquivo na pasta assets/ -->
+                <div class="gallery-slide"><img src="assets/headset.svg" alt="Foto principal: Produto 04 — mais um achadinho" loading="lazy"></div>
+                <!-- FOTOS EXTRAS: preencha src="" e elas entrarão na galeria.
+                     Se não preencher, esses espaços NÃO aparecerão no site. -->
+                <div class="gallery-slide"><img src="" alt="Foto 2 — Produto 04 — mais um achadinho" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 3 — Produto 04 — mais um achadinho" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 4 — Produto 04 — mais um achadinho" loading="lazy"></div>
+                <!-- Para 5ª foto ou mais: copie uma linha gallery-slide acima. -->
+              </div>
+              <div class="card-overlays">
+                <span class="card-badge">NOVO PRODUTO</span>
+                <span class="card-demo">EXEMPLO — EDITE AQUI</span>
+              </div>
+              <div class="card-bottom-hint">OKYAK / PRODUCTS</div>
+            </div>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Áudio</span>
+            <!-- TÍTULO DO PRODUTO -->
+            <h3>Produto 04 — mais um achadinho</h3>
+            <!-- DESCRIÇÃO DO PRODUTO -->
+            <p>Informe aqui a descrição do produto e o que o visitante precisa saber.</p>
+            <div class="product-details">
+              <span class="product-video-status">◈ Confira o produto</span>
+              <span>Preço na loja ↗</span>
+            </div>
+            <div class="product-actions">
+              <!-- LINK DE AFILIADO: preencha href="https://..." -->
+              <a class="buy-link" href="" target="_blank" rel="noopener noreferrer sponsored">Ver na loja <span class="external-arrow">↗</span></a>
+              <!-- Este botão aparece apenas quando data-youtube for preenchido -->
+              <button class="watch-link" type="button" hidden>▶ Ver vídeo</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- =====================================================
+             PRODUTO 05 — EDITE OS CAMPOS ABAIXO
+             VÍDEO DO YOUTUBE (opcional): data-youtube="https://youtu.be/ID"
+             CATEGORIA / FILTRO: data-category="Setup"
+             ===================================================== -->
+        <article class="product-card" data-category="Setup" data-youtube="">
+          <div class="product-gallery">
+            <div class="product-image">
+              <div class="gallery-slides">
+                <!-- FOTO PRINCIPAL: coloque o arquivo na pasta assets/ -->
+                <div class="gallery-slide"><img src="assets/teclado.svg" alt="Foto principal: Produto 05 — edite este espaço" loading="lazy"></div>
+                <!-- FOTOS EXTRAS: preencha src="" e elas entrarão na galeria.
+                     Se não preencher, esses espaços NÃO aparecerão no site. -->
+                <div class="gallery-slide"><img src="" alt="Foto 2 — Produto 05 — edite este espaço" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 3 — Produto 05 — edite este espaço" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 4 — Produto 05 — edite este espaço" loading="lazy"></div>
+                <!-- Para 5ª foto ou mais: copie uma linha gallery-slide acima. -->
+              </div>
+              <div class="card-overlays">
+                <span class="card-badge">NOVO PRODUTO</span>
+                <span class="card-demo">EXEMPLO — EDITE AQUI</span>
+              </div>
+              <div class="card-bottom-hint">OKYAK / PRODUCTS</div>
+            </div>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Setup</span>
+            <!-- TÍTULO DO PRODUTO -->
+            <h3>Produto 05 — edite este espaço</h3>
+            <!-- DESCRIÇÃO DO PRODUTO -->
+            <p>Insira o título, descrição, fotos e link de afiliado deste produto.</p>
+            <div class="product-details">
+              <span class="product-video-status">◈ Confira o produto</span>
+              <span>Preço na loja ↗</span>
+            </div>
+            <div class="product-actions">
+              <!-- LINK DE AFILIADO: preencha href="https://..." -->
+              <a class="buy-link" href="" target="_blank" rel="noopener noreferrer sponsored">Ver na loja <span class="external-arrow">↗</span></a>
+              <!-- Este botão aparece apenas quando data-youtube for preenchido -->
+              <button class="watch-link" type="button" hidden>▶ Ver vídeo</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- =====================================================
+             PRODUTO 06 — EDITE OS CAMPOS ABAIXO
+             VÍDEO DO YOUTUBE (opcional): data-youtube="https://youtu.be/ID"
+             CATEGORIA / FILTRO: data-category="Acessórios"
+             ===================================================== -->
+        <article class="product-card" data-category="Acessórios" data-youtube="">
+          <div class="product-gallery">
+            <div class="product-image">
+              <div class="gallery-slides">
+                <!-- FOTO PRINCIPAL: coloque o arquivo na pasta assets/ -->
+                <div class="gallery-slide"><img src="assets/mouse.svg" alt="Foto principal: Produto 06 — adicione um produto" loading="lazy"></div>
+                <!-- FOTOS EXTRAS: preencha src="" e elas entrarão na galeria.
+                     Se não preencher, esses espaços NÃO aparecerão no site. -->
+                <div class="gallery-slide"><img src="" alt="Foto 2 — Produto 06 — adicione um produto" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 3 — Produto 06 — adicione um produto" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 4 — Produto 06 — adicione um produto" loading="lazy"></div>
+                <!-- Para 5ª foto ou mais: copie uma linha gallery-slide acima. -->
+              </div>
+              <div class="card-overlays">
+                <span class="card-badge">NOVO PRODUTO</span>
+                <span class="card-demo">EXEMPLO — EDITE AQUI</span>
+              </div>
+              <div class="card-bottom-hint">OKYAK / PRODUCTS</div>
+            </div>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Acessórios</span>
+            <!-- TÍTULO DO PRODUTO -->
+            <h3>Produto 06 — adicione um produto</h3>
+            <!-- DESCRIÇÃO DO PRODUTO -->
+            <p>Você pode copiar o bloco deste produto para criar outros sem limite.</p>
+            <div class="product-details">
+              <span class="product-video-status">◈ Confira o produto</span>
+              <span>Preço na loja ↗</span>
+            </div>
+            <div class="product-actions">
+              <!-- LINK DE AFILIADO: preencha href="https://..." -->
+              <a class="buy-link" href="" target="_blank" rel="noopener noreferrer sponsored">Ver na loja <span class="external-arrow">↗</span></a>
+              <!-- Este botão aparece apenas quando data-youtube for preenchido -->
+              <button class="watch-link" type="button" hidden>▶ Ver vídeo</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- +++ ESPAÇO PARA PRODUTO 07, 08, 09... +++
+             Para criar o produto 07, copie um dos artigos acima,
+             do início <article ...> até o fim </article>, e cole AQUI. -->
+      </div>
       <div id="empty-state" class="empty-state" hidden><span>🛸</span><h3>Nenhum sinal encontrado</h3><p>Não encontramos produtos para essa busca.</p><button class="btn btn-outline" id="clear-filters" type="button">Limpar filtros</button></div>
       <p class="disclosure-inline">* Esta é uma vitrine de divulgação. Os botões de compra abrem lojas externas. Alguns links podem ser de afiliados e gerar comissão ao canal, sem custo adicional para você. Preços e disponibilidade são definidos pelas lojas.</p>
     </section>
 
     <section class="video-section" id="videos"><div class="shell video-layout"><div class="video-left"><span class="section-kicker"><span></span> UNBOXING / NA PRÁTICA</span><h2>Antes de comprar,<br><em>dê o play.</em></h2><p>Quer ver o produto fora da caixa, seus detalhes e como ele funciona? Quando houver um vídeo cadastrado, você poderá assistir aqui ou diretamente no meu canal.</p><div class="video-perks"><span><b>✧</b> Demonstrações em vídeo</span><span><b>✧</b> Opiniões de quem mostra o produto</span><span><b>✧</b> Link na mesma vitrine</span></div><a href="https://www.youtube.com/@Alien_Okyak/videos" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Conhecer meu YouTube <span aria-hidden="true">↗</span></a></div><div class="video-showcase"><div class="video-showcase-head"><span><i></i> ALIEN OKYAK / UNBOXING LAB</span><span>▶ YOUTUBE</span></div><div class="video-stage" id="featured-video"><span class="stage-orbit stage-orbit-1"></span><span class="stage-orbit stage-orbit-2"></span><div class="stage-inner"><div class="stage-play">▶</div><small>AGUARDANDO TRANSMISSÃO</small><strong>Seu próximo unboxing pode aparecer aqui.</strong><span>Cadastre o link de um vídeo no catálogo.</span></div></div><div class="video-showcase-foot"><span>CONTEÚDO DO CANAL</span><span>ALIEN OKYAK ©</span></div></div></div></section>
 
-    <section id="como-funciona" class="how shell"><div class="how-header"><span class="section-kicker"><span></span> SIMPLES ASSIM</span><h2>Da descoberta <em>ao clique.</em></h2></div><div class="steps"><article class="step"><span class="step-number">01 <b>↗</b></span><div class="step-emoji">🔎</div><h3>Encontre o produto</h3><p>Navegue pelos achadinhos, veja a foto e leia a descrição.</p></article><article class="step"><span class="step-number">02 <b>↗</b></span><div class="step-emoji">📺</div><h3>Assista ao vídeo</h3><p>Se tiver unboxing, veja como o produto é na prática.</p></article><article class="step"><span class="step-number">03 <b>↗</b></span><div class="step-emoji">🛍️</div><h3>Vá para a loja</h3><p>Clique no link de afiliado e compre diretamente com o vendedor.</p></article></div></section>
+    <section id="como-funciona" class="how shell"><div class="how-header"><span class="section-kicker"><span></span> SIMPLES ASSIM</span><h2>Da descoberta <em>ao clique.</em></h2></div><div class="steps"><article class="step"><span class="step-number">01 <b>↗</b></span><div class="step-emoji">🔎</div><h3>Encontre o produto</h3><p>Navegue pelos achadinhos, passe pelas fotos e leia a descrição.</p></article><article class="step"><span class="step-number">02 <b>↗</b></span><div class="step-emoji">📺</div><h3>Assista ao vídeo</h3><p>Se tiver unboxing, veja como o produto é na prática.</p></article><article class="step"><span class="step-number">03 <b>↗</b></span><div class="step-emoji">🛍️</div><h3>Vá para a loja</h3><p>Clique no link de afiliado e compre diretamente com o vendedor.</p></article></div></section>
 
     <section class="channel-promo shell"><div class="channel-bg">OKYAK</div><div><span class="section-kicker"><span></span> SINTONIZE NA NAVE</span><h2>Gostou dos achados?<br><em>O universo continua no canal.</em></h2><p>Games, tecnologia, conteúdo novo e descobertas no Alien Okyak.</p></div><a href="https://www.youtube.com/@Alien_Okyak" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Inscreva-se no canal <span>↗</span></a></section>
 
@@ -85,16 +372,17 @@
 
   <dialog id="video-dialog" class="video-dialog" aria-label="Vídeo de unboxing"><div class="dialog-header"><strong id="dialog-title">Unboxing</strong><button id="close-dialog" type="button" aria-label="Fechar vídeo">×</button></div><div class="dialog-video" id="dialog-video"></div><p>Vídeo incorporado do YouTube. O conteúdo pertence ao canal indicado no vídeo.</p></dialog>
 
-  <!-- Visualizador opcional: abre a foto completa sem cortes. -->
-  <dialog id="photo-dialog" class="photo-dialog" aria-label="Ampliar foto do produto">
-    <div class="photo-dialog-header"><strong id="photo-title">Foto do produto</strong><button id="photo-close" type="button" aria-label="Fechar foto">×</button></div>
-    <div class="photo-dialog-body">
-      <button id="photo-prev" type="button" aria-label="Foto anterior">‹</button>
-      <img id="photo-full" src="assets/produto.svg" alt="Foto ampliada do produto">
-      <button id="photo-next" type="button" aria-label="Próxima foto">›</button>
+  <!-- VISUALIZADOR DE FOTOS — imagens completas, sem corte. -->
+  <dialog id="photo-dialog" class="photo-dialog" aria-label="Visualizar fotos do produto">
+    <div class="photo-dialog-header"><strong id="photo-dialog-title">Foto do produto</strong><button id="close-photo" type="button" aria-label="Fechar foto">×</button></div>
+    <div class="photo-dialog-main">
+      <button class="photo-dialog-arrow" id="photo-prev" type="button" aria-label="Foto anterior">‹</button>
+      <img id="photo-dialog-img" src="assets/produto.svg" alt="Foto ampliada do produto">
+      <button class="photo-dialog-arrow" id="photo-next" type="button" aria-label="Próxima foto">›</button>
     </div>
-    <div id="photo-count" class="photo-dialog-foot"></div>
+    <div class="photo-dialog-footer" id="photo-dialog-count">1 / 1</div>
   </dialog>
-  <script src="produtos.js"></script><script src="app.js"></script>
+  <!-- Produtos editáveis no próprio index.html. Alternativamente, use editor.html. -->
+  <script src="app.js"></script>
 </body>
 </html>

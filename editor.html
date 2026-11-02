@@ -1,13 +1,154 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="theme-color" content="#090713"><link rel="icon" href="assets/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><title>Editor de produtos — Okyak Unbox</title><style>
-.editor-shell{max-width:1220px;margin:0 auto;padding:40px 24px 100px}.editor-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:38px}.editor-bar h1{font:700 clamp(29px,4vw,43px) 'Space Grotesk';letter-spacing:-2px;margin:8px 0}.editor-bar p{color:var(--muted);font-size:13px;margin:0}.editor-panels{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(350px,1.15fr);gap:24px;align-items:start}.edit-panel{background:#151020;border:1px solid #392b4d;border-radius:16px;padding:24px}.edit-panel h2{font-size:21px;letter-spacing:-.5px;margin:0 0 15px}.edit-note{font-size:12px;color:#aaa0ba;background:#22192f;border-left:3px solid #ba8cff;padding:13px 15px;border-radius:4px;margin-bottom:20px}.edit-list{display:flex;flex-direction:column;gap:8px;max-height:600px;overflow:auto}.edit-item{border:1px solid #393046;background:#1c162b;border-radius:10px;padding:11px;display:flex;align-items:center;gap:10px}.edit-item.selected{border-color:#b98cf9}.edit-item>img{width:58px;height:54px;object-fit:contain;border-radius:8px;background:#29213d}.edit-item-info{min-width:0;flex:1}.edit-item-info strong{display:block;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.edit-item-info small{color:#9d92ad;font-size:10px}.edit-item button{border:1px solid #675177;background:#392947;border-radius:7px;color:#e9ddf2;font-size:12px;padding:5px 8px}.edit-item button:hover{background:#5b386e}.edit-actions{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}.edit-actions .btn{min-height:38px;padding:9px 13px;font-size:11px}.edit-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.edit-field{display:flex;flex-direction:column;gap:5px;min-width:0}.edit-field.full{grid-column:1/-1}.edit-field label{font-size:11px;font-weight:800;color:#d7c9e9}.edit-field input,.edit-field textarea,.edit-field select{width:100%;background:#0e0a17;color:#efe8f7;border:1px solid #514267;border-radius:8px;padding:11px;font:12px 'DM Sans',sans-serif;outline:0}.edit-field textarea{min-height:85px;resize:vertical}.edit-field input:focus,.edit-field textarea:focus{border-color:#b88dff}.edit-field small{font-size:10px;color:#9685aa}.edit-check{display:flex;gap:9px;align-items:center;font-size:12px;color:#cfc2e2}.edit-check input{accent-color:#a783f5}.edit-form-actions{grid-column:1/-1;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:12px}.editor-status{font-size:12px;color:#75ead4;min-height:22px}.editor-footer{margin-top:25px;padding:22px;border:1px solid #352840;border-radius:14px}.editor-footer h3{font:700 18px 'Space Grotesk';margin:0 0 10px}.editor-footer p{font-size:12px;color:#aaa0b8}.editor-footer .btn{margin-top:7px}@media(max-width:850px){.editor-panels{grid-template-columns:1fr}}@media(max-width:480px){.edit-form{grid-template-columns:1fr}.edit-field.full{grid-column:auto}.edit-form-actions{grid-column:auto}.editor-shell{padding:25px 15px 65px}.edit-panel{padding:16px}}
-</style></head><body><div class="topline"><span class="live-dot"></span> FERRAMENTA LOCAL DO CRIADOR / OKYAK UNBOX</div><header class="header"><div class="shell header-inner"><a href="index.html" class="brand"><span class="brand-mark"><img src="assets/icon.svg" alt=""></span><span class="brand-type"><strong>OKYAK<span>UNBOX</span></strong><small>EDITOR DO CATÁLOGO</small></span></a><a class="header-cta" style="display:inline-flex" href="index.html">↗ Ver site</a></div></header><main class="editor-shell"><div class="editor-bar"><div><span class="section-kicker"><span></span> ÁREA DE CRIAÇÃO</span><h1>Gerencie sua <span style="color:#bb86ff">vitrine.</span></h1><p>Cadastre fotos, informações, links de afiliados e vídeos. Depois exporte para publicar.</p></div><button id="download" type="button" class="btn btn-primary">↓ Baixar produtos.js</button></div><p class="edit-note"><strong>Importante:</strong> isto é um editor local, não um painel conectado ao seu site. Depois de salvar um produto, baixe <code>produtos.js</code> e substitua o arquivo na pasta do site ou no GitHub. Os exemplos iniciais não possuem links reais.</p><div class="editor-panels"><section class="edit-panel"><div class="edit-actions"><button class="btn btn-outline" id="new" type="button">+ Novo produto</button><button class="btn btn-ghost" id="reset" type="button">Restaurar catálogo original</button></div><h2>Produtos cadastrados <span id="total" style="color:#b78bf0"></span></h2><div id="edit-list" class="edit-list"></div></section><section class="edit-panel"><h2 id="form-title">Editar produto</h2><form id="product-form" class="edit-form"><div class="edit-field full"><label for="nome">Nome do produto *</label><input id="nome" required maxlength="90" placeholder="Ex.: Headset Bluetooth XYZ"></div><div class="edit-field"><label for="categoria">Categoria *</label><input id="categoria" required maxlength="30" placeholder="Ex.: Tecnologia"></div><div class="edit-field"><label for="selo">Selo opcional</label><input id="selo" maxlength="24" placeholder="Ex.: UNBOXING"></div><div class="edit-field full"><label for="descricao">Descrição curta</label><textarea id="descricao" maxlength="300" placeholder="O que você quer apresentar deste produto?"></textarea></div><div class="edit-field full"><label for="imagem">Link ou caminho da foto</label><input id="imagem" placeholder="https://site.com/foto.jpg ou assets/foto.jpg"><small>Fotos locais devem ser colocadas na pasta <b>assets/</b> do site e também enviadas ao GitHub.</small></div><div class="edit-field full"><label for="imagens">Fotos extras (uma por linha)</label><textarea id="imagens" rows="4" placeholder="assets/controle-lateral.webp&#10;assets/controle-caixa.webp"></textarea><small>Adicione quantas fotos desejar. A principal é a foto do campo acima. Pode usar caminhos assets/ ou links HTTPS.</small></div><div class="edit-field full"><label for="afiliado">Link de afiliado / loja</label><input id="afiliado" type="url" placeholder="https://... (link fornecido pelo programa de afiliados)"></div><div class="edit-field full"><label for="youtube">Link do unboxing no YouTube (opcional)</label><input id="youtube" type="url" placeholder="https://www.youtube.com/watch?v=..."></div><div class="edit-field full"><label class="edit-check"><input type="checkbox" id="destaque"> Destacar produto no catálogo</label></div><div class="edit-field full"><label class="edit-check"><input type="checkbox" id="demo"> Mostrar etiqueta "EXEMPLO"</label></div><div class="edit-form-actions"><button class="btn btn-primary" type="submit">✓ Salvar produto</button><button class="btn btn-ghost" type="button" id="delete">Excluir</button><span class="editor-status" id="status" role="status"></span></div></form></section></div><div class="editor-footer"><h3>Como publicar as mudanças</h3><p>Depois de editar, clique em <b>Baixar produtos.js</b>. Substitua o arquivo antigo na pasta do site. Se o site estiver no GitHub Pages, envie o novo arquivo <b>produtos.js</b> ao seu repositório, junto com as novas imagens da pasta <b>assets</b>. Atualizar o rascunho aqui não modifica a página pública automaticamente.</p><button id="download-bottom" type="button" class="btn btn-primary">↓ Baixar catálogo para publicação</button></div></main><script src="produtos.js"></script><script>
-(()=>{'use strict';const initial=JSON.parse(JSON.stringify(window.OKYAK_PRODUCTS||[]));let list;try{list=JSON.parse(localStorage.getItem('okyak_unbox_editor_v1')||'null')||initial}catch{list=initial}if(!Array.isArray(list))list=initial;let selected=list[0]?.id||null;const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const validPhoto=s=>String(s||'').trim();const cleanText=s=>String(s||'').trim();function persist(){try{localStorage.setItem('okyak_unbox_editor_v1',JSON.stringify(list))}catch{showStatus('Seu navegador não conseguiu salvar o rascunho. Exporte o arquivo.') }}function showStatus(t){$('status').textContent=t}function render(){const el=$('edit-list');$('total').textContent=`(${list.length})`;el.innerHTML=list.length?list.map((p,i)=>`<div class="edit-item ${p.id===selected?'selected':''}"><img src="${esc(p.imagem||'assets/produto.svg')}" onerror="this.onerror=null;this.src='assets/produto.svg'" alt=""><div class="edit-item-info"><strong>${esc(p.nome)}</strong><small>${esc(p.categoria||'Sem categoria')}${p.demo?' • EXEMPLO':''}</small></div><button type="button" data-up="${i}" title="Subir produto" aria-label="Mover para cima" ${i===0?'disabled':''}>↑</button><button type="button" data-down="${i}" title="Descer produto" aria-label="Mover para baixo" ${i===list.length-1?'disabled':''}>↓</button><button type="button" data-edit="${esc(p.id)}">Editar</button></div>`).join(''):'<p class="no-items">Nenhum produto. Clique em Novo produto.</p>';fillForm()}
-function fillForm(){const p=list.find(x=>x.id===selected);$('form-title').textContent=p?'Editar produto':'Novo produto';for(const f of ['nome','categoria','selo','descricao','imagem','afiliado','youtube'])$(f).value=p?p[f]||'':'';$('imagens').value=Array.isArray(p?.imagens)?p.imagens.join('\n'):'';$('destaque').checked=!!p?.destaque;$('demo').checked=!!p?.demo;$('delete').disabled=!p}
-$('edit-list').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.hasAttribute('data-edit'))selected=b.dataset.edit;else if(b.hasAttribute('data-up')){let i=Number(b.dataset.up);if(i>0)[list[i],list[i-1]]=[list[i-1],list[i]]}else if(b.hasAttribute('data-down')){let i=Number(b.dataset.down);if(i<list.length-1)[list[i],list[i+1]]=[list[i+1],list[i]]}persist();render()});
-$('new').addEventListener('click',()=>{selected=null;render();$('nome').focus();showStatus('Preencha os campos para cadastrar um produto.')});
-$('product-form').addEventListener('submit',e=>{e.preventDefault();const data={nome:cleanText($('nome').value),categoria:cleanText($('categoria').value),selo:cleanText($('selo').value),descricao:cleanText($('descricao').value),imagem:validPhoto($('imagem').value)||'assets/produto.svg',imagens:$('imagens').value.split(/\r?\n/).map(validPhoto).filter(Boolean),fallback:'assets/produto.svg',afiliado:cleanText($('afiliado').value),youtube:cleanText($('youtube').value),destaque:$('destaque').checked,demo:$('demo').checked};if(!data.nome||!data.categoria)return showStatus('Nome e categoria são obrigatórios.');for(const k of ['afiliado','youtube']){if(data[k]){try{const u=new URL(data[k]);if(!['https:','http:'].includes(u.protocol))throw Error()}catch{return showStatus('O campo '+(k==='afiliado'?'link de afiliado':'YouTube')+' precisa ser uma URL válida.')}}}if(data.imagem.includes(':')){try{const u=new URL(data.imagem);if(!['https:','http:'].includes(u.protocol))throw Error()}catch{return showStatus('Use um link de foto HTTP(S) ou um caminho local como assets/foto.jpg.')}}let ix=list.findIndex(p=>p.id===selected);if(ix>=0)list[ix]={...list[ix],...data};else{const id='produto-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,5);list.unshift({id,...data});selected=id}persist();render();showStatus('Produto salvo neste navegador. Exporte para publicar.')});
-$('delete').addEventListener('click',()=>{if(!selected||!confirm('Excluir este produto do rascunho?'))return;list=list.filter(p=>p.id!==selected);selected=list[0]?.id||null;persist();render();showStatus('Produto excluído do rascunho.')});
-$('reset').addEventListener('click',()=>{if(!confirm('Restaurar os exemplos originais? As alterações não exportadas serão perdidas.'))return;list=JSON.parse(JSON.stringify(initial));selected=list[0]?.id||null;persist();render();showStatus('Catálogo original restaurado.')});
-function download(){const data='/* OKYAK UNBOX — Catálogo publicado. Editado pelo editor local. */\nwindow.OKYAK_PRODUCTS = '+JSON.stringify(list,null,2).replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029')+';\n';const blob=new Blob([data],{type:'text/javascript;charset=utf-8'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download='produtos.js';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);showStatus('Arquivo preparado. Substitua produtos.js no seu site.')}
-$('download').addEventListener('click',download);$('download-bottom').addEventListener('click',download);render();})();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editor local — OKYAK UNBOX</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090713;--panel:#1a1429;--stroke:#3d3154;--text:#f7f0ff;--muted:#afa5bd;--primary:#bd8cff}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0,#33214e,transparent 40%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.5}
+    header{border-bottom:1px solid var(--stroke);background:#100b1b; padding:21px max(22px,calc((100% - 1160px)/2))}header h1{font-size:26px;margin:0;letter-spacing:-1px}header h1 span{color:var(--primary)}header p{margin:5px 0 0;color:var(--muted);font-size:13px}
+    main{max-width:1160px;margin:30px auto 70px;padding:0 19px}.intro{background:#231735;border:1px solid var(--stroke);padding:21px;border-radius:14px}.intro h2{font-size:19px;margin:0 0 8px}.intro p{margin:5px 0 15px;color:#d9cce8;font-size:13px}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}button,.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:10px 15px;border-radius:9px;border:1px solid #695282;background:#2a2040;color:white;font-weight:700;font-size:12px;cursor:pointer}button:hover,.button:hover{background:#43315b}.primary{background:var(--primary);color:#1d112c;border-color:var(--primary)}.primary:hover{background:#d0afff}.btn-danger{border-color:#925068;color:#ffc5d8;background:#37202d}input[type=file]{max-width:100%;font-size:12px;color:#e9dcf2}
+    .layout{margin-top:19px;display:grid;grid-template-columns:minmax(235px,.78fr) minmax(0,1.22fr);gap:20px}.panel{border:1px solid var(--stroke);background:#171222;border-radius:14px;padding:20px}.panel h2{font-size:19px;margin:0 0 12px}.hint{font-size:12px;color:var(--muted);margin:4px 0 14px}.products{display:flex;flex-direction:column;gap:9px;max-height:700px;overflow:auto}.product-btn{text-align:left;justify-content:start;display:flex;gap:11px;width:100%;background:#20182e;white-space:normal}.product-btn.active{border-color:var(--primary);box-shadow:inset 0 0 0 1px var(--primary)}.product-btn img{width:50px;height:49px;object-fit:contain;background:white;border-radius:7px;flex-shrink:0}.product-btn span{min-width:0}.product-btn strong{display:block;font-size:12px}.product-btn small{display:block;color:#c5b0da;font-size:10px}.edit-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.full{grid-column:1/-1}label{font-size:12px;font-weight:800;color:#f3e8ff}.field input,.field textarea{width:100%;min-width:0;border:1px solid #655278;background:#0d0a15;color:white;padding:11px 12px;border-radius:8px;font:13px system-ui,sans-serif}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus{outline:2px solid #a778fa;outline-offset:1px}.field small{color:#ada1c1;font-size:11px}.actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px}.status{min-height:21px;margin:14px 0 0;color:#91ebd0;font-size:13px}#list-empty{color:#a99ab9;font-size:13px}.footnote{margin-top:18px;font-size:12px;color:#aaa0b7}.file-warning{color:#ffd7a6}
+    @media(max-width:790px){.layout{grid-template-columns:1fr}}@media(max-width:480px){.edit-form{grid-template-columns:1fr}.full,.actions{grid-column:auto}.panel{padding:15px}}
+  </style>
+</head>
+<body>
+<header><h1>👽 OKYAK<span> UNBOX</span></h1><p>Editor de produtos — fotos, vídeos, título, descrição e afiliados</p></header>
+<main>
+  <section class="intro">
+    <h2>1. Carregue seu arquivo index.html</h2>
+    <p>Este editor funciona no seu navegador. Por segurança, você precisa selecionar o <b>index.html</b> uma vez. Depois, edite os produtos e baixe o HTML atualizado. Nenhuma informação é enviada para servidores.</p>
+    <div class="row"><label class="button" for="input-file">📂 Carregar index.html</label><input id="input-file" type="file" accept=".html,text/html"><button type="button" class="primary" id="download" disabled>⬇ Baixar index.html atualizado</button></div>
+    <div class="status" id="status" role="status">Abra o index.html que veio no ZIP para começar.</div>
+  </section>
+  <div class="layout">
+    <section class="panel"><h2>2. Produtos do catálogo</h2><div class="row" style="margin-bottom:14px"><button id="add" type="button" disabled>+ Novo produto</button><button class="btn-danger" id="remove" type="button" disabled>Excluir selecionado</button></div><div class="products" id="products"><p id="list-empty">Carregue o HTML para ver os produtos.</p></div></section>
+    <section class="panel"><h2>3. Editar produto</h2><p class="hint">Preencha fotos extras colocando uma imagem por linha. Deixe o vídeo vazio quando não tiver um unboxing.</p>
+      <form id="form" class="edit-form">
+        <div class="field full"><label for="name">Título *</label><input id="name" required maxlength="140" placeholder="Ex.: Controle 8BitDo Ultimate 2"></div>
+        <div class="field"><label for="category">Categoria *</label><input id="category" required maxlength="40" placeholder="Games"></div>
+        <div class="field"><label for="badge">Etiqueta/selo</label><input id="badge" maxlength="30" placeholder="SHOPEE"></div>
+        <div class="field full"><label for="description">Descrição do produto</label><textarea id="description" placeholder="Descreva as funções e características reais..."></textarea></div>
+        <div class="field full"><label for="photo">Foto principal *</label><input id="photo" required placeholder="assets/foto-principal.webp"><small>Coloque suas imagens na pasta <b>assets/</b> e envie junto ao GitHub.</small></div>
+        <div class="field full"><label for="extras">Outras fotos (uma por linha)</label><textarea id="extras" placeholder="assets/foto-lateral.webp&#10;assets/foto-caixa.jpg&#10;assets/foto-verso.png"></textarea><small>Sem limite fixo de fotos. O visitante poderá passar pelas fotos com setas e miniaturas.</small></div>
+        <div class="field full"><label for="affiliate">Link de afiliado</label><input id="affiliate" placeholder="https://s.shopee.com.br/..."><small>Se vazio, o botão de compra fica desativado.</small></div>
+        <div class="field full"><label for="youtube">Vídeo do YouTube (opcional)</label><input id="youtube" placeholder="https://www.youtube.com/watch?v=..."></div>
+        <div class="actions"><button class="primary" id="save" type="submit" disabled>✓ Salvar alterações no catálogo</button><button id="clear" type="button" disabled>Limpar formulário</button></div>
+      </form>
+      <div class="footnote">Ao terminar, clique em <b>Baixar index.html atualizado</b>, substitua o index.html do site e publique no GitHub. Este editor não modifica o arquivo original automaticamente.</div>
+    </section>
+  </div>
+</main>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  let doc = null, selected = null;
+  const status = message => $('status').textContent = message;
+  const cards = () => doc ? [...doc.querySelectorAll('#product-grid > article.product-card')] : [];
+  const getText = (card, selector) => card?.querySelector(selector)?.textContent?.trim() || '';
+  const validPath = value => {
+    if (!value) return true;
+    const s = value.trim();
+    if (/^\s*(?:javascript|data|vbscript):/i.test(s)) return false;
+    if (/^https?:\/\//i.test(s)) return true;
+    return !s.startsWith('/') && !s.includes('..') && /^[\w\-./%() À-ÿ]+$/.test(s);
+  };
+  const validWebLink = value => {
+    if (!value) return true;
+    try { const u = new URL(value); return ['https:','http:'].includes(u.protocol) && !!u.hostname; } catch { return false; }
+  };
+  function resetForm(){ $('form').reset(); $('badge').value='SHOPEE'; }
+  function setDisabled(isDisabled){ for (const id of ['download','add','save','clear']) $(id).disabled=isDisabled; $('remove').disabled=isDisabled || selected===null; }
+  function loadForm(){
+    if (!doc) return;
+    const card = selected===null ? null : cards()[selected];
+    resetForm();
+    if (!card){ $('save').textContent='✓ Cadastrar novo produto'; $('remove').disabled=true; return; }
+    $('name').value=getText(card,'h3');
+    $('category').value=card.dataset.category || '';
+    $('badge').value=getText(card,'.card-badge');
+    $('description').value=getText(card,'.product-body > p');
+    const images=[...card.querySelectorAll('.gallery-slides > .gallery-slide img')].map(x=>x.getAttribute('src')||'').filter(Boolean);
+    $('photo').value=images[0] || 'assets/produto.svg';
+    $('extras').value=images.slice(1).join('\n');
+    $('affiliate').value=card.querySelector('.buy-link')?.getAttribute('href') || '';
+    $('youtube').value=card.dataset.youtube || '';
+    $('save').textContent='✓ Salvar alterações no catálogo'; $('remove').disabled=false;
+  }
+  function renderList(){
+    const host=$('products');host.replaceChildren();
+    if (!doc){ host.textContent='Carregue o index.html primeiro.'; return; }
+    cards().forEach((card,i)=>{
+      const btn=document.createElement('button');btn.type='button';btn.className='product-btn'+(selected===i?' active':'');
+      const img=document.createElement('img'); img.src=card.querySelector('.gallery-slides img')?.getAttribute('src') || 'assets/produto.svg'; img.onerror=()=>{img.onerror=null; img.src='assets/produto.svg'};
+      const label=document.createElement('span');const title=document.createElement('strong');title.textContent=getText(card,'h3')||`Produto ${i+1}`;const cat=document.createElement('small');cat.textContent=card.dataset.category||'Sem categoria';label.append(title,cat);btn.append(img,label);
+      btn.addEventListener('click',()=>{selected=i;loadForm();renderList()});host.append(btn);
+    });
+    setDisabled(false);
+  }
+  $('input-file').addEventListener('change',async e=>{
+    const file=e.target.files?.[0];if(!file)return;
+    try {
+      const html=await file.text();const parsed=new DOMParser().parseFromString(html,'text/html');
+      if (!parsed.querySelector('#product-grid') || !parsed.querySelector('#video-dialog')) throw new Error('Arquivo incompatível: escolha o index.html do OKYAK UNBOX deste ZIP.');
+      doc=parsed;selected=cards().length?0:null;loadForm();renderList();status(`Catálogo carregado: ${cards().length} produto(s). Você já pode editar ou cadastrar.`);
+    } catch(err){doc=null;selected=null;setDisabled(true);renderList();status(String(err.message||err));}
+  });
+  $('add').addEventListener('click',()=>{selected=null;loadForm();renderList();$('name').focus();status('Preencha o formulário para cadastrar um produto novo.');});
+  $('clear').addEventListener('click',()=>{resetForm();status('Formulário limpo.');});
+  $('remove').addEventListener('click',()=>{
+    if(!doc||selected===null||!confirm('Excluir este produto do HTML exportado?'))return;
+    cards()[selected]?.remove();selected=cards().length?Math.min(selected,cards().length-1):null;renderList();loadForm();status('Produto excluído. Baixe o index.html para aplicar.');
+  });
+  $('form').addEventListener('submit',e=>{
+    e.preventDefault();if(!doc)return;
+    const data={
+      name:$('name').value.trim(),category:$('category').value.trim(),badge:$('badge').value.trim(),
+      description:$('description').value.trim(),photo:$('photo').value.trim(),
+      extras:$('extras').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean),
+      affiliate:$('affiliate').value.trim(),youtube:$('youtube').value.trim()
+    };
+    if(!data.name||!data.category||!data.photo){status('Título, categoria e foto principal são obrigatórios.');return;}
+    if(![data.photo,...data.extras].every(validPath)){status('Uma foto tem endereço inválido. Use assets/arquivo.webp ou URL HTTPS.');return;}
+    if(!validWebLink(data.affiliate)||!validWebLink(data.youtube)){status('O link de afiliado ou vídeo deve começar com https:// (ou http://).');return;}
+    const grid=doc.querySelector('#product-grid');
+    let card=selected===null?null:cards()[selected];
+    if(!card){
+      const template=cards()[0];
+      if(!template){status('O HTML precisa conter ao menos um cartão-modelo.');return;}
+      card=template.cloneNode(true);grid.append(card);selected=cards().length-1;
+    }
+    card.dataset.category=data.category;
+    card.dataset.youtube=data.youtube;
+    card.querySelector('.product-category').textContent=data.category;
+    card.querySelector('h3').textContent=data.name;
+    card.querySelector('.product-body > p').textContent=data.description||'Confira o produto na loja parceira.';
+    card.querySelector('.card-badge').textContent=data.badge||'PRODUTO';
+    card.querySelector('.card-demo')?.remove();
+    const slides=card.querySelector('.gallery-slides');slides.replaceChildren();
+    const paths=[data.photo,...data.extras];
+    // Deixar 3 campos vazios no HTML para futuras fotos sem edições estruturais.
+    while(paths.length<4) paths.push('');
+    paths.forEach((src,i)=>{
+      const slot=doc.createElement('div');slot.className='gallery-slide';
+      const img=doc.createElement('img'); img.setAttribute('src',src);img.alt=`${data.name} — foto ${i+1}`;img.loading='lazy';slot.append(img);slides.append(slot);
+    });
+    const buy=card.querySelector('.buy-link');buy.setAttribute('href',data.affiliate);
+    const watch=card.querySelector('.watch-link');if(watch)watch.hidden=true;
+    renderList();loadForm();status('Produto salvo no catálogo. Clique em Baixar index.html atualizado para publicar.');
+  });
+  $('download').addEventListener('click',()=>{
+    if(!doc)return;
+    const data='<!DOCTYPE html>\n'+doc.documentElement.outerHTML+'\n';
+    const url=URL.createObjectURL(new Blob([data],{type:'text/html;charset=utf-8'}));
+    const a=document.createElement('a');a.href=url;a.download='index.html';document.body.append(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    status('index.html atualizado baixado. Substitua o arquivo do seu site e envie as novas fotos junto.');
+  });
+})();
+</script>
+</body>
+</html>

@@ -5,102 +5,63 @@
 @media(max-width:500px){.brand-type strong{font-size:17px}.hero h1{font-size:clamp(41px,10vw,55px);letter-spacing:-2.8px}.hero-copy>p{font-size:14px}.hero-actions{gap:9px}.hero-actions .btn{padding:11px 14px;gap:10px;font-size:12px}.eyebrow{font-size:9px;letter-spacing:1.4px}.hero-art{height:340px}.hero-controller{width:300px;top:37px}.hero-orbit{width:300px;height:300px}.hero-orbit-2{width:210px;height:210px}.float-a{top:140px}.float-b{top:75px}.hero-art-bottom{padding:15px}.product-grid{grid-template-columns:1fr}.product-image{height:250px}.product-body h3{font-size:21px}.catalog-meta{letter-spacing:.5px}.video-stage{height:245px}.stage-inner strong{font-size:17px}.footer-main{gap:24px}h2{letter-spacing:-1.4px}.channel-promo h2{font-size:25px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
+/* Elementos opcionais e cartões filtrados não devem aparecer. */
+[hidden] { display: none !important; }
+a.buy-link:not([href]), a.buy-link[href=""] { pointer-events:none; background:#30263a; border-color:#453950; color:#a89bb3; cursor:not-allowed; }
+
 
 /* ================================================================
-   OKYAK UNBOX | Fotos inteiras, SEM ZOOM + galeria de fotos/vídeo
-   A imagem sempre aparece inteira (contain), sem recorte.
+   GALERIA DE PRODUTOS — imagens completas SEM ZOOM/CORTE
    ================================================================ */
-.product-card .product-image {
-  height: 268px;
-  background: radial-gradient(circle at 50% 38%,#332a4e,#151321 78%);
-  position: relative;
-  overflow: hidden;
+.product-gallery{width:100%;min-width:0;overflow:hidden;background:#171121}
+.product-gallery .product-image{height:258px;background:linear-gradient(150deg,#f8f7fb,#ece8f4);overflow:hidden;position:relative;display:block}
+.product-gallery .product-image::after{display:none}
+.gallery-slides{width:100%;height:100%;position:relative}
+.gallery-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.gallery-slide[hidden]{display:none!important}
+.product-gallery .gallery-slide img{width:100%;height:100%;max-height:100%;object-fit:contain;object-position:center;display:block;transform:none!important;transition:none!important;padding:14px 24px}
+.product-card:hover .product-gallery .gallery-slide img{transform:none!important}
+.product-gallery .card-overlays{z-index:5;pointer-events:none}
+.product-gallery .card-bottom-hint{z-index:5;color:#3f3152;background:#ffffffb8;border-radius:4px;padding:3px 6px;bottom:10px}
+.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:8;border:1px solid #ffffffb9;color:#241631;background:#ffffffed;box-shadow:0 3px 20px #1c0d3833;width:32px;height:39px;display:grid;place-items:center;border-radius:9px;font:700 27px/1 Arial,sans-serif;transition:background .18s}
+.gallery-arrow:hover{background:#e6d1fa}
+.gallery-arrow.prev{left:8px}.gallery-arrow.next{right:8px}
+.gallery-arrow[hidden],.gallery-strip[hidden],.gallery-counter[hidden]{display:none!important}
+.gallery-counter{position:absolute;bottom:12px;left:12px;z-index:8;padding:3px 9px;background:#170d2bcc;border:1px solid #ffffff6b;color:#fff;border-radius:999px;font-size:11px;font-weight:700}
+.gallery-strip{display:flex;align-items:center;gap:8px;padding:11px 12px 13px;min-height:70px;overflow:auto;scrollbar-width:thin;scrollbar-color:#785c91 #171122;background:#161020}
+.gallery-thumb{flex:0 0 59px;width:59px;height:49px;background:#eeecf3;border:2px solid transparent;border-radius:8px;padding:3px;position:relative;overflow:hidden;display:grid;place-items:center}
+.gallery-thumb[aria-current="true"]{border-color:#b987ff;box-shadow:0 0 0 1px #693ea0}
+.gallery-thumb img{height:100%;width:100%;object-fit:contain;transform:none!important}
+.gallery-thumb.video-thumb-mini{background:#322150;color:#fff;font:700 11px 'Space Grotesk',sans-serif;gap:1px}
+.gallery-thumb.video-thumb-mini span{line-height:1.1;font-size:19px;color:#f2a5dd}
+.gallery-video{background:radial-gradient(circle at 50% 50%,#41205b,#171125 70%)}
+.gallery-video-cover{width:100%;height:100%;border:0;background:transparent;color:white;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;position:relative;padding:20px 12px;cursor:pointer}
+.gallery-video-cover img{position:absolute!important;inset:0;width:100%!important;height:100%!important;padding:0!important;object-fit:cover!important;filter:brightness(.40)}
+.gallery-video-cover .gallery-play{position:relative;z-index:2;background:linear-gradient(135deg,#a473f6,#eb88cb);color:#240e37;display:grid;place-items:center;border-radius:50%;height:58px;width:58px;font-size:22px;padding-left:4px;box-shadow:0 0 35px #12081890}
+.gallery-video-cover strong{position:relative;z-index:2;font:700 12px 'Space Grotesk',sans-serif;letter-spacing:.3px}
+.photo-zoom{position:absolute;bottom:12px;right:12px;z-index:8;padding:6px 10px;color:#261a38;background:#fffdf6ed;border:1px solid #ffffffb9;border-radius:8px;font-size:11px;font-weight:800;box-shadow:0 2px 12px #24152a24}
+.photo-zoom[hidden]{display:none!important}
+.photo-dialog{width:min(1050px,calc(100% - 24px));max-height:calc(100% - 28px);padding:0;background:#181223;color:#fff;border-radius:16px;border:1px solid #7b5e99;box-shadow:0 20px 80px #000c;overflow:hidden}
+.photo-dialog::backdrop{background:#040209df;backdrop-filter:blur(6px)}
+.photo-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:11px 16px;min-height:54px;background:#181223}
+.photo-dialog-header strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:700 15px 'Space Grotesk',sans-serif}
+.photo-dialog-header button{width:34px;height:34px;display:grid;place-items:center;border:1px solid #70518d;background:#38254e;color:white;border-radius:7px;font-size:24px}
+.photo-dialog-main{height:min(72vh,720px);min-height:200px;display:grid;grid-template-columns:50px minmax(0,1fr) 50px;align-items:center;justify-items:center;background:#f3f1f6;overflow:hidden;padding:7px}
+.photo-dialog-main img{width:100%;height:100%;object-fit:contain;min-width:0;max-height:100%}
+.photo-dialog-arrow{height:48px;width:40px;background:#fff;border:1px solid #cac2d7;border-radius:8px;color:#3b2755;font-size:30px}
+.photo-dialog-arrow:disabled{opacity:.28;cursor:not-allowed}
+.photo-dialog-footer{text-align:center;padding:9px 15px;color:#cfc0e0;font-size:12px;font-weight:700}
+@media(max-width:760px){.product-gallery .product-image{height:220px}.gallery-strip{gap:6px;padding:8px;min-height:62px}.gallery-thumb{flex-basis:49px;width:49px;height:44px}.gallery-arrow{height:37px;width:30px}.product-gallery .gallery-slide img{padding:10px 18px}.photo-dialog-main{grid-template-columns:37px minmax(0,1fr) 37px}.photo-dialog-arrow{width:34px}}
+@media(max-width:500px){.product-gallery .product-image{height:290px}.gallery-thumb{flex-basis:56px;width:56px;height:48px}.photo-dialog-main{height:min(68vh,560px)}}
+
+/* 2026 — imagem sempre inteira, sem efeito de zoom */
+.product-gallery .gallery-slide:not(.gallery-video) img {
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  scale: 1 !important;
 }
-.product-card .product-image::after { display:none; }
-/* Também corrige a versão antiga/publicada com <img> direto em .product-image. */
-.product-card .product-image img {
-  object-fit:contain !important;
-  object-position:center !important;
-  transform:none !important;
-  transition:none !important;
+.product-card:hover .product-gallery .gallery-slide:not(.gallery-video) img {
+  transform: none !important;
+  scale: 1 !important;
 }
-.product-card .product-image > img { padding:15px;box-sizing:border-box; }
-.product-card .product-image .gallery-track,
-.product-card .product-image .gallery-slide { width:100%;height:100%; }
-.product-card .product-image .gallery-slide { display:none;position:absolute;inset:0;align-items:center;justify-content:center; }
-.product-card .product-image .gallery-slide.is-active { display:flex; }
-.product-card .product-image .gallery-slide > img,
-.product-card .product-image .gallery-video-preview > img {
-  display:block;
-  width:100%;
-  height:100%;
-  max-width:100%;
-  object-fit:contain !important;
-  object-position:center center;
-  padding:15px;
-  box-sizing:border-box;
-  transform:none !important;
-  transition:none !important;
-}
-.product-card:hover .product-image img { transform:none !important; }
-.product-card .gallery-arrow {
-  position:absolute;top:50%;transform:translateY(-50%);z-index:4;
-  background:#130e24c9;border:1px solid #d4b0ff7d;border-radius:50%;
-  color:white;width:36px;height:36px;font-size:25px;line-height:1;
-  display:flex;align-items:center;justify-content:center;transition:background .2s;
-}
-.product-card .gallery-arrow:hover { background:#6a3a9b; }
-.product-card .gallery-arrow.prev { left:7px; }
-.product-card .gallery-arrow.next { right:7px; }
-.product-card .gallery-counter {
-  position:absolute;bottom:13px;left:12px;z-index:4;
-  background:#130e24e6;color:#f3e5ff;border:1px solid #ab8fcc85;
-  padding:3px 8px;border-radius:6px;font-size:10px;font-weight:700;
-}
-.product-card .gallery-slide .gallery-expand {
-  position:absolute;right:10px;bottom:11px;z-index:5;
-  background:#130e24df;color:#f3e5ff;border:1px solid #9874bc;
-  border-radius:7px;padding:5px 10px;font-size:10px;font-weight:800;
-}
-.product-card .gallery-expand:hover { background:#6a3a9b; }
-.product-card .gallery-slide .gallery-video-preview {
-  background:#160f25;width:100%;height:100%;border:0;position:relative;padding:0;
-  display:block;color:#fff;cursor:pointer;
-}
-.product-card .gallery-video-preview img { opacity:.76;object-fit:contain !important; }
-.gallery-video-caption {
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  border-radius:12px;padding:11px 16px;background:#180d31e8;color:#fff;
-  font-size:12px;font-weight:800;white-space:nowrap;border:1px solid #ae84f6;
-}
-.product-card .gallery-thumbs {
-  display:flex;gap:7px;padding:10px 12px;
-  border-top:1px solid #27233a;background:#151120;overflow-x:auto;
-  scrollbar-width:thin;scrollbar-color:#74549e transparent;
-}
-.product-card .gallery-thumb {
-  flex:0 0 53px;width:53px;height:49px;display:flex;align-items:center;justify-content:center;
-  position:relative;border:1px solid #4c3b61;background:#201a31;border-radius:7px;padding:2px;
-  overflow:hidden;transition:border-color .2s,background .2s;
-}
-.product-card .gallery-thumb img { width:100%;height:100%;object-fit:contain !important;transform:none !important; }
-.product-card .gallery-thumb[aria-pressed="true"] { border:2px solid #c89dff;background:#413058; }
-.product-card .gallery-thumb-video { font-size:10px;line-height:1.2;font-weight:800;color:#dfb7ff; }
-.product-card .gallery-thumb-video span { display:block;font-size:19px;color:#ff8fc1; }
-.photo-dialog { border:1px solid #79599d;border-radius:16px;padding:0;max-width:min(95vw,1100px);width:95vw;
-  max-height:94vh;background:#0e0b18;color:#fff;box-shadow:0 30px 100px #000c; }
-.photo-dialog::backdrop { background:#050409dc; }
-.photo-dialog-header { display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 17px;
-  font:700 15px 'Space Grotesk',sans-serif;border-bottom:1px solid #352940; }
-.photo-dialog-header button { color:white;background:#31213f;border:1px solid #674680;border-radius:8px;width:36px;height:36px;font-size:24px; }
-.photo-dialog-body {display:flex;gap:12px;align-items:center;justify-content:center;padding:15px;min-height:260px;}
-.photo-dialog-body img {display:block;object-fit:contain;width:calc(100% - 100px);height:min(76vh,710px);}
-.photo-dialog-body button {width:42px;height:42px;flex-shrink:0;background:#2c203e;color:#fff;border:1px solid #8667aa;border-radius:50%;font-size:29px;}
-.photo-dialog-foot {text-align:center;color:#b4a7c7;padding:0 15px 13px;font-size:12px;}
-@media(max-width:760px){
-  .product-card .product-image{height:260px;}
-  .photo-dialog-body {gap:5px;padding:8px;}
-  .photo-dialog-body img{width:calc(100% - 76px);height:min(72vh,600px);}
-  .photo-dialog-body button{width:33px;height:40px;font-size:23px;}
-}
-@media(max-width:500px){.product-card .product-image{height:290px;}}

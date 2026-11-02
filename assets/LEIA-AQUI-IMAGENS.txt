@@ -1,0 +1,13 @@
+COLOQUE SUAS FOTOS NESTA PASTA.
+
+Exemplos:
+  assets/controle-8bitdo-frente.webp
+  assets/controle-8bitdo-lateral.webp
+  assets/controle-8bitdo-caixa.jpg
+
+Para o controle 8BitDo fornecido anteriormente, o site procura exatamente:
+  controle 8bitdo ultimate2.webp
+Esta imagem NÃO estava nos arquivos enviados. Coloque aqui esse arquivo
+ou altere o src da foto no index.html para o nome real.
+
+Sem a imagem principal do 8BitDo, o site usa um desenho de reserva.

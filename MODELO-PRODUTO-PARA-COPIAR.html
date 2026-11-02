@@ -1,0 +1,50 @@
+<!--
+  COPIE O BLOCO <article> ATÉ </article> E COLE DENTRO DE
+  <div id="product-grid"> NO ARQUIVO index.html.
+  Edite foto, fotos extras, categoria, video, título, descrição e afiliado.
+  Campos de fotos vazios são ignorados automaticamente.
+-->
+
+        <!-- =====================================================
+             PRODUTO 07 — EDITE OS CAMPOS ABAIXO
+             VÍDEO DO YOUTUBE (opcional): data-youtube="https://youtu.be/ID"
+             CATEGORIA / FILTRO: data-category="Tecnologia"
+             ===================================================== -->
+        <article class="product-card" data-category="Tecnologia" data-youtube="">
+          <div class="product-gallery">
+            <div class="product-image">
+              <div class="gallery-slides">
+                <!-- FOTO PRINCIPAL: coloque o arquivo na pasta assets/ -->
+                <div class="gallery-slide"><img src="assets/foto-principal.webp" alt="Foto principal: COLOQUE AQUI O TÍTULO DO PRODUTO" loading="lazy"></div>
+                <!-- FOTOS EXTRAS: preencha src="" e elas entrarão na galeria.
+                     Se não preencher, esses espaços NÃO aparecerão no site. -->
+                <div class="gallery-slide"><img src="" alt="Foto 2 — COLOQUE AQUI O TÍTULO DO PRODUTO" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 3 — COLOQUE AQUI O TÍTULO DO PRODUTO" loading="lazy"></div>
+                <div class="gallery-slide"><img src="" alt="Foto 4 — COLOQUE AQUI O TÍTULO DO PRODUTO" loading="lazy"></div>
+                <!-- Para 5ª foto ou mais: copie uma linha gallery-slide acima. -->
+              </div>
+              <div class="card-overlays">
+                <span class="card-badge">NOVIDADE</span>
+                <span class="card-demo">EXEMPLO — EDITE AQUI</span>
+              </div>
+              <div class="card-bottom-hint">OKYAK / PRODUCTS</div>
+            </div>
+          </div>
+          <div class="product-body">
+            <span class="product-category">Tecnologia</span>
+            <!-- TÍTULO DO PRODUTO -->
+            <h3>COLOQUE AQUI O TÍTULO DO PRODUTO</h3>
+            <!-- DESCRIÇÃO DO PRODUTO -->
+            <p>Escreva aqui a descrição do produto.</p>
+            <div class="product-details">
+              <span class="product-video-status">◈ Confira o produto</span>
+              <span>Preço na loja ↗</span>
+            </div>
+            <div class="product-actions">
+              <!-- LINK DE AFILIADO: preencha href="https://..." -->
+              <a class="buy-link" href="" target="_blank" rel="noopener noreferrer sponsored">Ver na loja <span class="external-arrow">↗</span></a>
+              <!-- Este botão aparece apenas quando data-youtube for preenchido -->
+              <button class="watch-link" type="button" hidden>▶ Ver vídeo</button>
+            </div>
+          </div>
+        </article>
